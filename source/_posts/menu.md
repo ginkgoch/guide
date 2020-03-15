@@ -1,4 +1,4 @@
-* [Welcome](/guide/index/)
+* [Welcome](/guide)
 * [Getting Started](/guide/getting-started/index/)
     * [Setup](/guide/getting-started/setup/)
     * [Quick Start for CLI](/guide/getting-started/commandLine/)
