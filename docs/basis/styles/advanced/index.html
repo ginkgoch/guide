@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/guide/favicon-v2.png" />
+    
+
+    <title>
+        
+          Style Advanced Modules - Ginkgoch
+        
+    </title>
+
+    <meta name="keywords" content="map library, cross platform, multiple platforms, mapping software, spatial analysis">
+    <meta name="description" content="Ginkgoch provides an open source map library for crafting beautiful, cross platform mapping software for macOS, Linux and Windows from a single codebase.">
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/guide/css/book.css">
+
+    
+<script src="/guide/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/guide/">
+    <img src="/guide/favicon-v2.png">
+    <span>GINKGOCH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/guide/index">Welcome</a></li>
+<li><a href="/guide/getting-started/index">Getting Started</a><ul>
+<li><a href="/guide/getting-started/setup">Setup</a></li>
+<li><a href="/guide/getting-started/commandLine">Quick Start for CLI</a></li>
+<li><a href="/guide/getting-started/desktop">Quick Start for Desktop</a></li>
+<li><a href="/guide/getting-started/service">Quick Start for Service</a></li>
+<li><a href="/guide/getting-started/web">Quick Start for Web</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/index">Basis</a><ul>
+<li><a href="/guide/basis/geometries/index">Geometries</a><ul>
+<li><a href="/guide/basis/geometries/geometry">Geometry</a></li>
+<li><a href="/guide/basis/geometries/feature">Feature</a></li>
+<li><a href="/guide/basis/geometries/shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/styles/index">Styles</a><ul>
+<li><a href="/guide/basis/styles/style">Style</a></li>
+<li><a href="/guide/basis/styles/advanced">Advanced</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/layers/index">Layers</a><ul>
+<li><a href="/guide/basis/layers/shared">Shared</a></li>
+<li><a href="/guide/basis/layers/featureSource">FeatureSource</a></li>
+<li><a href="/guide/basis/layers/layer">Layer</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/maps/index">Map</a></li>
+</ul>
+</li>
+<li><a href="/guide/meta/index">Meta</a><ul>
+<li><a href="/guide/meta/release">Release Note</a></li>
+<li><a href="/guide/meta/showcase">Showcase</a></li>
+<li><a href="/guide/meta/faq">FAQ</a></li>
+<li><a href="/guide/meta/contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<script src="/guide/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="Style-Advanced-Modules"><a href="#Style-Advanced-Modules" class="headerlink" title="Style Advanced Modules"></a>Style Advanced Modules</h1><h2 id="AutoStyleOptions-Interface"><a href="#AutoStyleOptions-Interface" class="headerlink" title="AutoStyleOptions Interface"></a>AutoStyleOptions Interface</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> interface AutoStyleOptions &#123;</span><br><span class="line">    fromColor?: string;</span><br><span class="line">    toColor?: string;</span><br><span class="line">    strokeColor?: string;</span><br><span class="line">    strokeWidth?: number;</span><br><span class="line">    radius?: number;</span><br><span class="line">    symbol?: PointSymbolType;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ClassBreakStyle-Class"><a href="#ClassBreakStyle-Class" class="headerlink" title="ClassBreakStyle Class"></a>ClassBreakStyle Class</h2><p>Extends <code>Style</code>. This class represents a style to render different sub-styles based on the break down values.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> declare <span class="class"><span class="keyword">class</span> <span class="title">ClassBreakStyle</span> <span class="keyword">extends</span> <span class="title">Style</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The field name where to fetch the values to break down.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    field: string;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * classBreaks The break down sub-styles and its corresponding value.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    classBreaks: <span class="built_in">Array</span>&lt;ClassBreakItem&gt;;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Constructs a class break style instance.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;string&#125;</span> </span>field The field name where to fetch the values to break down.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;Array&lt;ClassBreakItem&gt;&#125;</span> </span>classBreaks The break down sub-styles and its corresponding value.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;string&#125;</span> </span>name The name of this style.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">constructor</span>(field?: string, classBreaks?: Array&lt;ClassBreakItem&gt;, name?: string);</span><br><span class="line">    /**</span><br><span class="line">     * Collects the required field names that will be used for rendering.</span><br><span class="line">     */</span><br><span class="line">    fields(): string[];</span><br><span class="line">    /**</span><br><span class="line">     * This is a shortcut function to automatically generate class breaks based on the values,</span><br><span class="line">     * and assign a gradient colors to each item.</span><br><span class="line">     * @deprecated Use `autoByRange` function instead.</span><br><span class="line">     * @param &#123;<span class="string">'fill'</span>|<span class="string">'linear'</span>|<span class="string">'point'</span>&#125; styleType The style type <span class="keyword">of</span> the sub-styles.</span><br><span class="line">     * @param &#123;string&#125; field The field name where the value is fetched.</span><br><span class="line">     * @param &#123;number&#125; maximum The maximum value to <span class="keyword">break</span> down.</span><br><span class="line">     * @param &#123;number&#125; minimum The minimum value to <span class="keyword">break</span> down.</span><br><span class="line">     * @param &#123;number&#125; count The <span class="keyword">break</span> down items count to generate.</span><br><span class="line">     * @param &#123;string&#125; fromColor The fill color begins <span class="keyword">from</span>.</span><br><span class="line">     * @param &#123;string&#125; toColor The fill color ends <span class="keyword">with</span>.</span><br><span class="line">     * @param &#123;string&#125; strokeColor The stroke color.</span><br><span class="line">     * @param &#123;number&#125; strokeWidth The stroke width <span class="keyword">in</span> pixel.</span><br><span class="line">     * @param &#123;number&#125; radius The radius <span class="keyword">for</span> points symbols.</span><br><span class="line">     * @param &#123;PointSymbolType&#125; symbol The point symbol type.</span><br><span class="line">     * @returns &#123;ClassBreakStyle&#125; A <span class="class"><span class="keyword">class</span> <span class="title">break</span> <span class="title">style</span> <span class="title">with</span> <span class="title">sub</span> <span class="title">styles</span> <span class="title">filled</span> <span class="title">with</span> <span class="title">the</span> <span class="title">specified</span> <span class="title">conditions</span>.</span></span><br><span class="line"><span class="class">     */</span></span><br><span class="line">    static auto(styleType: 'fill' | 'linear' | 'point', field: string, maximum: number, minimum: number, count: number, fromColor?: string, toColor?: string, strokeColor?: string, strokeWidth?: number, radius?: number, symbol?: PointSymbolType): ClassBreakStyle;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * This is a shortcut function to automatically generate class breaks based on the values,</span></span><br><span class="line"><span class="comment">     * and assign a gradient colors to each item.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;'fill'|'linear'|'point'&#125;</span> </span>styleType The style type of the sub-styles.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;string&#125;</span> </span>field The field name where the value is fetched.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;number&#125;</span> </span>maximum The maximum value to break down.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;number&#125;</span> </span>minimum The minimum value to break down.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;number&#125;</span> </span>count The break down items count to generate.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;AutoStyleOptions&#125;</span> </span>autoStyleOptions The auto style options.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@returns <span class="type">&#123;ClassBreakStyle&#125;</span> </span>A class break style with sub styles filled with the specified conditions.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> autoByRange(styleType: <span class="string">'fill'</span> | <span class="string">'linear'</span> | <span class="string">'point'</span>, <span class="attr">field</span>: string, <span class="attr">maximum</span>: number, <span class="attr">minimum</span>: number, <span class="attr">count</span>: number, autoStyleOptions?: AutoStyleOptions): ClassBreakStyle;</span><br><span class="line">    <span class="keyword">static</span> autoByAggregator(styleType: <span class="string">'fill'</span> | <span class="string">'linear'</span> | <span class="string">'point'</span>, <span class="attr">field</span>: string, <span class="attr">aggregator</span>: PropertyAggregator, <span class="attr">breakCount</span>: number, breakBy?: <span class="string">'value'</span> | <span class="string">'position'</span>, autoStyleOptions?: AutoStyleOptions): ClassBreakStyle;</span><br><span class="line">    <span class="keyword">static</span> autoByValues(styleType: <span class="string">'fill'</span> | <span class="string">'linear'</span> | <span class="string">'point'</span>, <span class="attr">field</span>: string, <span class="attr">breakDownValues</span>: <span class="built_in">Array</span>&lt;Range&gt;, autoStyleOptions?: AutoStyleOptions): ClassBreakStyle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ClassBreakItem-Interface"><a href="#ClassBreakItem-Interface" class="headerlink" title="ClassBreakItem Interface"></a>ClassBreakItem Interface</h2><p>Extends <code>Range</code>. This interface represents a structure of a class break item.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> interface ClassBreakItem extends Range &#123;</span><br><span class="line">    style: Style;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Range-Interface"><a href="#Range-Interface" class="headerlink" title="Range Interface"></a>Range Interface</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> interface Range &#123;</span><br><span class="line">    minimum: number;</span><br><span class="line">    maximum: number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="GeneralStyle-Class"><a href="#GeneralStyle-Class" class="headerlink" title="GeneralStyle Class"></a>GeneralStyle Class</h2><p>Extends <code>Style</code>. This class represents a general style regardless the geometry type to draw.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> declare <span class="class"><span class="keyword">class</span> <span class="title">GeneralStyle</span> <span class="keyword">extends</span> <span class="title">Style</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The fill style with color or pattern.</span></span><br><span class="line"><span class="comment">     * e.g. '#cccccc' | 'gray' | &#123; image: new Image('pattern.png'), repeat: 'repeat' &#125;</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    fillStyle: string | FillPattern;</span><br><span class="line">    <span class="comment">/** The stroke width in pixel. */</span></span><br><span class="line">    lineWidth: number;</span><br><span class="line">    <span class="comment">/** The stroke color string. e.g. "#000000" or "black". */</span></span><br><span class="line">    strokeStyle: string;</span><br><span class="line">    <span class="comment">/** The symbol type for point geometry. */</span></span><br><span class="line">    symbol: PointSymbolType;</span><br><span class="line">    <span class="comment">/** The radius width in pixel for point geometry. */</span></span><br><span class="line">    radius: number;</span><br><span class="line">    <span class="comment">/** The line dash array. e.g. [4, 4] */</span></span><br><span class="line">    lineDash?: <span class="built_in">Array</span>&lt;number&gt;;</span><br><span class="line">    <span class="comment">/** Constructs a general style instance that regardless the geometry type to draw. */</span></span><br><span class="line">    <span class="keyword">constructor</span>(fillStyle?: string | FillPattern, strokeStyle?: string, lineWidth?: number, radius?: number, symbol?: PointSymbolType, name?: string);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="IconStyle-Class"><a href="#IconStyle-Class" class="headerlink" title="IconStyle Class"></a>IconStyle Class</h2><p>Extends <code>Style</code>. This class represents an icon style to draw icons on map.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> declare <span class="class"><span class="keyword">class</span> <span class="title">IconStyle</span> <span class="keyword">extends</span> <span class="title">Style</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** The image source to draw. */</span></span><br><span class="line">    icon: Image;</span><br><span class="line">    <span class="comment">/** The horizontal offset to draw. */</span></span><br><span class="line">    offsetX: number;</span><br><span class="line">    <span class="comment">/** The vertical offset to draw. */</span></span><br><span class="line">    offsetY: number;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Constructs an icon style instance.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;Image&#125;</span> </span>icon The image source to draw.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;number&#125;</span> </span>offsetX The horizontal offset to draw.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;number&#125;</span> </span>offsetY The vertical offset to draw.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;string&#125;</span> </span>name The name of this style.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">constructor</span>(icon?: Image, offsetX?: number, offsetY?: number, name?: string);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="StyleUtils-Class"><a href="#StyleUtils-Class" class="headerlink" title="StyleUtils Class"></a>StyleUtils Class</h2><p>This class represents an internal utilities to generate random colors and related resources for styles.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> declare <span class="class"><span class="keyword">class</span> <span class="title">StyleUtils</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Gets a color or random color if not specified.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@category <span class="variable">styles</span></span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> colorOrRandom(color?: string, option?: RandomColorOption): string;</span><br><span class="line">    <span class="comment">/** Gets a color or random color in dark color family if not specified. */</span></span><br><span class="line">    <span class="keyword">static</span> colorOrRandomDark(color?: string): string;</span><br><span class="line">    <span class="comment">/** Gets a color or random color in light color family if not specified. */</span></span><br><span class="line">    <span class="keyword">static</span> colorOrRandomLight(color?: string): string;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Gets a color arrays between two colors.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;color&#125;</span> </span>count The color count to generate.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;string&#125;</span> </span>fromColor The color begins from. Optional with default value - a random color.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;string&#125;</span> </span>toColor The color ends with. Optional with default value - a random color.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@returns <span class="type">&#123;Array&lt;string&gt;&#125;</span> </span>A color list between the two colors.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> colorsBetween(count: number, fromColor?: string, toColor?: string): string[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ValueStyle-Class"><a href="#ValueStyle-Class" class="headerlink" title="ValueStyle Class"></a>ValueStyle Class</h2><p>Extends <code>Style</code>. This class represents a value style which allows to set various sub-styles based on a field value.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> declare <span class="class"><span class="keyword">class</span> <span class="title">ValueStyle</span> <span class="keyword">extends</span> <span class="title">Style</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** A value item list with the definition of value and its corresponding style. */</span></span><br><span class="line">    items: ValueItem[];</span><br><span class="line">    <span class="comment">/** The field name where the value is fetched from. */</span></span><br><span class="line">    field: string;</span><br><span class="line">    <span class="comment">/** Constructs a value style instance. */</span></span><br><span class="line">    <span class="keyword">constructor</span>(field?: string, items?: ValueItem[], name?: string);</span><br><span class="line">    /**</span><br><span class="line">     * Collects the required field names that will be used for rendering.</span><br><span class="line">     * @returns &#123;string[]&#125; The required field names that will be used <span class="keyword">for</span> rendering.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    fields(): string[];</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * @deprecated Use <span class="string">`auto`</span> <span class="function"><span class="keyword">function</span> <span class="title">instead</span>.</span></span><br><span class="line"><span class="function">     * <span class="title">This</span> <span class="title">is</span> <span class="title">a</span> <span class="title">shortcut</span> <span class="title">function</span> <span class="title">to</span> <span class="title">automatically</span> <span class="title">generate</span> <span class="title">value</span> <span class="title">items</span> <span class="title">based</span> <span class="title">on</span> <span class="title">the</span> <span class="title">distinct</span> <span class="title">values</span>,</span></span><br><span class="line"><span class="function">     * <span class="title">and</span> <span class="title">assign</span> <span class="title">a</span> <span class="title">gradient</span> <span class="title">colors</span> <span class="title">to</span> <span class="title">each</span> <span class="title">item</span>.</span></span><br><span class="line"><span class="function">     * @<span class="title">param</span> </span>&#123;<span class="string">'fill'</span>|<span class="string">'linear'</span>|<span class="string">'point'</span>&#125; styleType The style type <span class="keyword">of</span> the sub-styles.</span><br><span class="line">     * @param &#123;string&#125; field The field name where the value is fetched.</span><br><span class="line">     * @param &#123;any[]&#125; values The distinct value array.</span><br><span class="line">     * @param &#123;string&#125; fromColor The fill color begins <span class="keyword">from</span>.</span><br><span class="line">     * @param &#123;string&#125; toColor The fill color ends <span class="keyword">with</span>.</span><br><span class="line">     * @param &#123;string&#125; strokeColor The stroke color.</span><br><span class="line">     * @param &#123;number&#125; strokeWidth The stroke width <span class="keyword">in</span> pixel.</span><br><span class="line">     * @param &#123;number&#125; radius The radius <span class="keyword">for</span> points symbols.</span><br><span class="line">     * @param &#123;PointSymbolType&#125; symbol The point symbol type.</span><br><span class="line">     * @returns &#123;ValueStyle&#125; A value style <span class="keyword">with</span> sub styles filled <span class="keyword">with</span> the specified conditions.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    static auto(styleType: 'fill' | 'linear' | 'point', field: string, values: any[], fromColor?: string, toColor?: string, strokeColor?: string, strokeWidth?: number, radius?: number, symbol?: PointSymbolType): ValueStyle;</span></span><br><span class="line"><span class="regexp">    static autoByValues(styleType: 'fill' | 'linear' | 'point', field: string, values: any[], autoStyleOptions?: AutoStyleOptions): ValueStyle;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/guide/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #42b983;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>Ginkgoch</div>
+      <div>2019-03-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/guide/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/guide/js/book.js"></script>

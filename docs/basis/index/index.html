@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/guide/favicon-v2.png" />
+    
+
+    <title>
+        
+          Feature Basic - Ginkgoch
+        
+    </title>
+
+    <meta name="keywords" content="map library, cross platform, multiple platforms, mapping software, spatial analysis">
+    <meta name="description" content="Ginkgoch provides an open source map library for crafting beautiful, cross platform mapping software for macOS, Linux and Windows from a single codebase.">
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/guide/css/book.css">
+
+    
+<script src="/guide/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/guide/">
+    <img src="/guide/favicon-v2.png">
+    <span>GINKGOCH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/guide/index">Welcome</a></li>
+<li><a href="/guide/getting-started/index">Getting Started</a><ul>
+<li><a href="/guide/getting-started/setup">Setup</a></li>
+<li><a href="/guide/getting-started/commandLine">Quick Start for CLI</a></li>
+<li><a href="/guide/getting-started/desktop">Quick Start for Desktop</a></li>
+<li><a href="/guide/getting-started/service">Quick Start for Service</a></li>
+<li><a href="/guide/getting-started/web">Quick Start for Web</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/index">Basis</a><ul>
+<li><a href="/guide/basis/geometries/index">Geometries</a><ul>
+<li><a href="/guide/basis/geometries/geometry">Geometry</a></li>
+<li><a href="/guide/basis/geometries/feature">Feature</a></li>
+<li><a href="/guide/basis/geometries/shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/styles/index">Styles</a><ul>
+<li><a href="/guide/basis/styles/style">Style</a></li>
+<li><a href="/guide/basis/styles/advanced">Advanced</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/layers/index">Layers</a><ul>
+<li><a href="/guide/basis/layers/shared">Shared</a></li>
+<li><a href="/guide/basis/layers/featureSource">FeatureSource</a></li>
+<li><a href="/guide/basis/layers/layer">Layer</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/maps/index">Map</a></li>
+</ul>
+</li>
+<li><a href="/guide/meta/index">Meta</a><ul>
+<li><a href="/guide/meta/release">Release Note</a></li>
+<li><a href="/guide/meta/showcase">Showcase</a></li>
+<li><a href="/guide/meta/faq">FAQ</a></li>
+<li><a href="/guide/meta/contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<script src="/guide/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="Feature-Basic"><a href="#Feature-Basic" class="headerlink" title="Feature Basic"></a>Feature Basic</h1><p>In this guide, we will introduce the basis of <code>Ginkgoch Map Library</code>. Similar to the other service side rendering mapping component, such as <code>Sharpmap</code>, <code>Arcmap</code> etc. the basis are almost the same. Ginkgoch also provides those core basis APIs to support spatial analysis and data visualization. </p>
+<p>In General, it is formed with following features.</p>
+<ul>
+<li>Geometries</li>
+<li>Sources</li>
+<li>Styles</li>
+<li>Layers</li>
+<li>Maps</li>
+</ul>
+<p>We will introduce those features in this section as well as their API references.</p>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/guide/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #42b983;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>Ginkgoch</div>
+      <div>2019-03-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/guide/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/guide/js/book.js"></script>

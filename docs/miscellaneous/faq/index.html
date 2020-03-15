@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/guide/favicon-v2.png" />
+    
+
+    <title>
+        
+          FAQ - Ginkgoch
+        
+    </title>
+
+    <meta name="keywords" content="map library, cross platform, multiple platforms, mapping software, spatial analysis">
+    <meta name="description" content="Ginkgoch provides an open source map library for crafting beautiful, cross platform mapping software for macOS, Linux and Windows from a single codebase.">
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/guide/css/book.css">
+
+    
+<script src="/guide/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/guide/">
+    <img src="/guide/favicon-v2.png">
+    <span>GINKGOCH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/guide/index">Welcome</a></li>
+<li><a href="/guide/getting-started/index">Getting Started</a><ul>
+<li><a href="/guide/getting-started/setup">Setup</a></li>
+<li><a href="/guide/getting-started/commandLine">Quick Start for CLI</a></li>
+<li><a href="/guide/getting-started/desktop">Quick Start for Desktop</a></li>
+<li><a href="/guide/getting-started/service">Quick Start for Service</a></li>
+<li><a href="/guide/getting-started/web">Quick Start for Web</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/index">Basis</a><ul>
+<li><a href="/guide/basis/geometries/index">Geometries</a><ul>
+<li><a href="/guide/basis/geometries/geometry">Geometry</a></li>
+<li><a href="/guide/basis/geometries/feature">Feature</a></li>
+<li><a href="/guide/basis/geometries/shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/styles/index">Styles</a><ul>
+<li><a href="/guide/basis/styles/style">Style</a></li>
+<li><a href="/guide/basis/styles/advanced">Advanced</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/layers/index">Layers</a><ul>
+<li><a href="/guide/basis/layers/shared">Shared</a></li>
+<li><a href="/guide/basis/layers/featureSource">FeatureSource</a></li>
+<li><a href="/guide/basis/layers/layer">Layer</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/maps/index">Map</a></li>
+</ul>
+</li>
+<li><a href="/guide/meta/index">Meta</a><ul>
+<li><a href="/guide/meta/release">Release Note</a></li>
+<li><a href="/guide/meta/showcase">Showcase</a></li>
+<li><a href="/guide/meta/faq">FAQ</a></li>
+<li><a href="/guide/meta/contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<script src="/guide/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="The-difference-to-other-GIS-components"><a href="#The-difference-to-other-GIS-components" class="headerlink" title="The difference to other GIS components?"></a>The difference to other GIS components?</h2><p>The entire project including UI, server and its dependencies libraries are all written by NodeJS. If you already knew JavaScript, I hope you this could bring you a brand new experience to build a full functional GIS application with one programming language. </p>
+<h2 id="Why-I-need-a-customized-thematic-map"><a href="#Why-I-need-a-customized-thematic-map" class="headerlink" title="Why I need a customized thematic map?"></a>Why I need a customized thematic map?</h2><p>When you ask this question, I assume that you already have the experience to build map apps on browser with <code>OpenLayers</code>, <code>Google Map</code> or <code>Leaflet</code> etc. This might satisfy your requirement already. But when you have a GIS data (e.g. SHP file, Postgre or even CSV) that contains more precise vectors, or more properties on the records, or analyze on a region (e.g. find some records with some special condition in a random drawn area), it might be a headache to implement with the existing client based libraries. Because the 3rd party client libraries only provides restricted predefined query functions, styles etc. functions. In this case, setup a custom map server is a good choice and become a solution to extend your map application more. With your own server, you can also interact with the 3rd party client map libraries to provide better UX for applications.</p>
+<h2 id="Why-NodeJS"><a href="#Why-NodeJS" class="headerlink" title="Why NodeJS?"></a>Why NodeJS?</h2><h3 id="One-codebase-and-only-JavaScript"><a href="#One-codebase-and-only-JavaScript" class="headerlink" title="One codebase and only JavaScript"></a>One codebase and only JavaScript</h3><p>JavaScript is one of the most popular programming language in the world currently. It is also the required skills for UI developers. On the other hand, many small teams, groups, organizations or kickstart companies requires full stack developers, so JavaScript will be the most important skill in this part.</p>
+<p>In the GIS region, we know there are many famous client MAP libraries like <code>OpenLayers</code>, <code>Leaflet</code> or <code>Google</code> etc. It is pretty easy to build a browser based map view for your websites or web-apps. But if you want to setup your own map server cluster, you might need to learn to use <code>C#</code>, <code>JAVA</code>, cloud etc. This is not too many complete GIS solution with JavaScript.</p>
+<p>When I play around with NodeJS which allows me to build more interesting application on server side with JavaScript, so this project launches.</p>
+<h3 id="Thread-safe"><a href="#Thread-safe" class="headerlink" title="Thread safe"></a>Thread safe</h3><p>It is well-known that NodeJS runs in <code>single thread</code> and <code>event-loop</code>. I used to use many other GIS component with <code>C#</code> and <code>JAVA</code>, it has a bad experience to build high performance service. We need to consider the mutex lock on resource reading/appending in multi-thread.</p>
+<p>With NodeJS’ single thread mode, you don’t need to consider the thread safe issue; instead, we can focus more on the concrete business of your application.</p>
+<h3 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h3><p>Technically, NodeJS runs with V8 engine with single thread and I/O non-blocking mode, it seems has worse performance than the other techs, such as JAVA. But in the real world with high CPU performance, the gap becomes less and less. </p>
+<p>It really depends on the scenario of your application. For example:</p>
+<ol>
+<li>For CPU-intensive calculating, like huge amount number calculation, zero I/O processing, definitely, <code>JAVA</code> or <code>C#</code> will be a best choice.</li>
+<li>For IO-intensive process, like reading/writing files, NodeJS will be 3.4X better performance. (<a href="https://github.com/johnrjenson/JavaVsNode" target="_blank" rel="noopener">https://github.com/johnrjenson/JavaVsNode</a>)</li>
+</ol>
+<p>I don’t think the application is a pure I/O or CPU intensive application, but for the balanced workload application, I would say the performance will be about the same. </p>
+<p>One worst thing I can imagine for node is the memory restriction (e.g. 1G in 64-bit system). We need to either reduce the memory usage or manually expand the memory.</p>
+<h3 id="Mature-Echo-System"><a href="#Mature-Echo-System" class="headerlink" title="Mature Echo-System"></a>Mature Echo-System</h3><p>JavaScript has a great echo-system for full-stack technology. It is allow to build cross-platform website, service, desktop or even mobile applications. <code>Ginkgoch</code> will also provide those solutions on this cross-platform, various categories of GIS applications. (PS. it is now supported website, web service, desktop; and mobile is in my backlog).</p>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/guide/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #42b983;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>Ginkgoch</div>
+      <div>2019-03-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/guide/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/guide/js/book.js"></script>

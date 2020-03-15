@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/guide/favicon-v2.png" />
+    
+
+    <title>
+        
+          Quick Started for Command Line Tool - Ginkgoch
+        
+    </title>
+
+    <meta name="keywords" content="map library, cross platform, multiple platforms, mapping software, spatial analysis">
+    <meta name="description" content="Ginkgoch provides an open source map library for crafting beautiful, cross platform mapping software for macOS, Linux and Windows from a single codebase.">
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/guide/css/book.css">
+
+    
+<script src="/guide/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/guide/">
+    <img src="/guide/favicon-v2.png">
+    <span>GINKGOCH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/guide/index">Welcome</a></li>
+<li><a href="/guide/getting-started/index">Getting Started</a><ul>
+<li><a href="/guide/getting-started/setup">Setup</a></li>
+<li><a href="/guide/getting-started/commandLine">Quick Start for CLI</a></li>
+<li><a href="/guide/getting-started/desktop">Quick Start for Desktop</a></li>
+<li><a href="/guide/getting-started/service">Quick Start for Service</a></li>
+<li><a href="/guide/getting-started/web">Quick Start for Web</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/index">Basis</a><ul>
+<li><a href="/guide/basis/geometries/index">Geometries</a><ul>
+<li><a href="/guide/basis/geometries/geometry">Geometry</a></li>
+<li><a href="/guide/basis/geometries/feature">Feature</a></li>
+<li><a href="/guide/basis/geometries/shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/styles/index">Styles</a><ul>
+<li><a href="/guide/basis/styles/style">Style</a></li>
+<li><a href="/guide/basis/styles/advanced">Advanced</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/layers/index">Layers</a><ul>
+<li><a href="/guide/basis/layers/shared">Shared</a></li>
+<li><a href="/guide/basis/layers/featureSource">FeatureSource</a></li>
+<li><a href="/guide/basis/layers/layer">Layer</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/maps/index">Map</a></li>
+</ul>
+</li>
+<li><a href="/guide/meta/index">Meta</a><ul>
+<li><a href="/guide/meta/release">Release Note</a></li>
+<li><a href="/guide/meta/showcase">Showcase</a></li>
+<li><a href="/guide/meta/faq">FAQ</a></li>
+<li><a href="/guide/meta/contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<script src="/guide/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="Quick-Started-for-Command-Line-Tool"><a href="#Quick-Started-for-Command-Line-Tool" class="headerlink" title="Quick Started for Command Line Tool"></a>Quick Started for Command Line Tool</h1><blockquote>
+<p>This quick started guide assumes the <a href="GettingStarted/Setup">setup</a> page is read and the environment is prepared.<br>The complete source code is in <a href="https://github.com/ginkgoch/node-map-quickstart/tree/master/quick-started-cmd" target="_blank" rel="noopener">github</a>.</p>
+</blockquote>
+<h2 id="User-Story"><a href="#User-Story" class="headerlink" title="User Story"></a>User Story</h2><p>For a software development, defining the user story is the first thing. Our quick started user story is this.</p>
+<blockquote>
+<p>My current mapping software needs to work with ShapeFile. But I need to explore what the ShapeFile looks like, such as what shape type it is, how many features it includes and what the fields it has. In my development, I often switch my laptop between home (Windows) and office (macOS), so I want a cross platform light weighted tool to help me out those kind of requirements.</p>
+</blockquote>
+<h2 id="Let’s-Get-Started"><a href="#Let’s-Get-Started" class="headerlink" title="Let’s Get Started"></a>Let’s Get Started</h2><p>Open your terminal and follow the commands below:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir quick-started-cmd</span><br><span class="line"><span class="built_in">cd</span> quick-started-cmd</span><br><span class="line">yarn init -y</span><br><span class="line">yarn add ginkgoch-map</span><br><span class="line">touch main.js</span><br></pre></td></tr></table></figure>
+
+<p>At this step, we already setup a basic command line tool project layout. To make it simple, I will avoid to involve the ES6 or TypeScript, but it is actually compatible with those two. I will introduce the ES6 or TypeScript integration later.</p>
+<p>Source Code:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> G = <span class="built_in">require</span>(<span class="string">'ginkgoch-map'</span>).default.all;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// make sure shapefile is specified</span></span><br><span class="line">    <span class="keyword">if</span> (process.argv.length &lt; <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.info(<span class="string">'Specified a shapefile path parameter'</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// make sure the shapefile does exist</span></span><br><span class="line">    <span class="keyword">let</span> filePath = process.argv[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">if</span> (!fs.existsSync(filePath)) &#123;</span><br><span class="line">        <span class="built_in">console</span>.error(<span class="string">`File <span class="subst">$&#123;filePath&#125;</span> doesn't exist`</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// create a shapefile instance</span></span><br><span class="line">    <span class="keyword">let</span> source = <span class="keyword">new</span> G.Shapefile(filePath);</span><br><span class="line">    source.open();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// get shapefile header and print it</span></span><br><span class="line">    <span class="keyword">let</span> header = source.header();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.keys(header)) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span>\t\t<span class="subst">$&#123;header[key]&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main();</span><br></pre></td></tr></table></figure>
+
+<p>Then execute command <code>node main.js [a shapefile path]</code> will print the header information.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fileCode: 9994</span><br><span class="line">fileLength: 3813840</span><br><span class="line">version: 1000</span><br><span class="line">fileType: 5</span><br><span class="line">minx: -20037508.23146975</span><br><span class="line">miny: -20037508.231469806</span><br><span class="line">maxx: 20037508.23146975</span><br><span class="line">maxy: 18418382.328923147</span><br></pre></td></tr></table></figure>
+
+<p>Get to know more about our API to you can do more powerful functions.</p>
+<p>Here is a complete command tool for shapefile <a href="https://github.com/ginkgoch/node-shapefile-cli" target="_blank" rel="noopener">node-shapefile-cli</a> for your continue reading.</p>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/guide/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #42b983;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>Ginkgoch</div>
+      <div>2019-03-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/guide/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/guide/js/book.js"></script>

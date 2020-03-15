@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/guide/favicon-v2.png" />
+    
+
+    <title>
+        
+          Showcase - Ginkgoch
+        
+    </title>
+
+    <meta name="keywords" content="map library, cross platform, multiple platforms, mapping software, spatial analysis">
+    <meta name="description" content="Ginkgoch provides an open source map library for crafting beautiful, cross platform mapping software for macOS, Linux and Windows from a single codebase.">
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/guide/css/book.css">
+
+    
+<script src="/guide/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/guide/">
+    <img src="/guide/favicon-v2.png">
+    <span>GINKGOCH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/guide/index">Welcome</a></li>
+<li><a href="/guide/getting-started/index">Getting Started</a><ul>
+<li><a href="/guide/getting-started/setup">Setup</a></li>
+<li><a href="/guide/getting-started/commandLine">Quick Start for CLI</a></li>
+<li><a href="/guide/getting-started/desktop">Quick Start for Desktop</a></li>
+<li><a href="/guide/getting-started/service">Quick Start for Service</a></li>
+<li><a href="/guide/getting-started/web">Quick Start for Web</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/index">Basis</a><ul>
+<li><a href="/guide/basis/geometries/index">Geometries</a><ul>
+<li><a href="/guide/basis/geometries/geometry">Geometry</a></li>
+<li><a href="/guide/basis/geometries/feature">Feature</a></li>
+<li><a href="/guide/basis/geometries/shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/styles/index">Styles</a><ul>
+<li><a href="/guide/basis/styles/style">Style</a></li>
+<li><a href="/guide/basis/styles/advanced">Advanced</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/layers/index">Layers</a><ul>
+<li><a href="/guide/basis/layers/shared">Shared</a></li>
+<li><a href="/guide/basis/layers/featureSource">FeatureSource</a></li>
+<li><a href="/guide/basis/layers/layer">Layer</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/maps/index">Map</a></li>
+</ul>
+</li>
+<li><a href="/guide/meta/index">Meta</a><ul>
+<li><a href="/guide/meta/release">Release Note</a></li>
+<li><a href="/guide/meta/showcase">Showcase</a></li>
+<li><a href="/guide/meta/faq">FAQ</a></li>
+<li><a href="/guide/meta/contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<script src="/guide/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="Showcase"><a href="#Showcase" class="headerlink" title="Showcase"></a>Showcase</h1><p>This page collects some highlight projects working with <code>Ginkgoch Map Library for Node.js</code>. It covers the demos, utils or apps for <code>command line</code> tools, <code>desktop</code> and <code>web</code> mapping development. All those tools or apps are capable to run on multiple platforms.</p>
+<h2 id="Quick-Started-Projects"><a href="#Quick-Started-Projects" class="headerlink" title="Quick Started Projects"></a>Quick Started Projects</h2><p><a href="https://github.com/ginkgoch/node-map-quickstart" target="_blank" rel="noopener">https://github.com/ginkgoch/node-map-quickstart</a></p>
+<p>This is the project for the four step by step quick started project for map related <code>command line</code>, <code>desktop</code>, <code>service</code> and <code>web</code> mapping software.</p>
+<p><img src="/assets/web-map-identify.gif" alt="web-map-identify"></p>
+<h2 id="How-Do-I-Feature-Demos-for-Desktop"><a href="#How-Do-I-Feature-Demos-for-Desktop" class="headerlink" title="How Do I Feature Demos for Desktop"></a>How Do I Feature Demos for Desktop</h2><p><a href="https://github.com/ginkgoch/map-desktop-demo" target="_blank" rel="noopener">https://github.com/ginkgoch/map-desktop-demo</a></p>
+<p>This is <code>Ginkgoch MAP SDK</code> feature demos for desktop. It includes all basic features for building a mapping software. All demos are designed as few clicks to represent what it can be done.</p>
+<ul>
+<li><a href="https://ginkgoch.s3.us-east-2.amazonaws.com/desktop-demo/ginkgoch-feature-demos-for-desktop-1.0.0-mac.zip" target="_blank" rel="noopener">Download executable for macOS</a></li>
+<li><a href="https://ginkgoch.s3.us-east-2.amazonaws.com/desktop-demo/ginkgoch-feature-demos-for-desktop-1.0.0.AppImage" target="_blank" rel="noopener">Download executable for Linux</a></li>
+<li><del>Windows not available</del> (I don’t have a Windows machine 😂, but still allows to manually build)</li>
+</ul>
+<p><img src="/assets/showcase-feature-demos-desktop.png" alt="showcase-feature-demos-desktop"></p>
+<h2 id="Shapefile-Viewer-for-Desktop"><a href="#Shapefile-Viewer-for-Desktop" class="headerlink" title="Shapefile Viewer for Desktop"></a>Shapefile Viewer for Desktop</h2><p><a href="https://github.com/ginkgoch/node-shapefile-viewer" target="_blank" rel="noopener">https://github.com/ginkgoch/node-shapefile-viewer</a></p>
+<p>A desktop application for exploring shapefile information. Including header, features etc.</p>
+<p><img src="/assets/showcase-shapefile-viewer.png" alt="showcase-shapefile-viewer"></p>
+<h2 id="Novel-Coronavirus-Coverage-Map"><a href="#Novel-Coronavirus-Coverage-Map" class="headerlink" title="Novel Coronavirus Coverage Map"></a>Novel Coronavirus Coverage Map</h2><p><a href="https://github.com/ginkgoch/nCoV-map" target="_blank" rel="noopener">https://github.com/ginkgoch/nCoV-map</a></p>
+<p>A step-by-step tutorial to build a novel coronavirus map for China.</p>
+<p><img src="/assets/showcase-ncov-map.png" alt="showcase-ncov-map"></p>
+<h2 id="Map-RESTful-Server"><a href="#Map-RESTful-Server" class="headerlink" title="Map RESTful Server"></a>Map RESTful Server</h2><p><a href="https://github.com/ginkgoch/node-map-server" target="_blank" rel="noopener">https://github.com/ginkgoch/node-map-server</a></p>
+<p>This is a mapping service demo that allows for map visualization, querying and customization. <code>Docker</code> support.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EvgRDlh0V6E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p><img src="/assets/showcase-map-rest-server.png" alt="showcase-map-rest-server"></p>
+<h2 id="Shapefile-Command-Line-Tool"><a href="#Shapefile-Command-Line-Tool" class="headerlink" title="Shapefile Command Line Tool"></a>Shapefile Command Line Tool</h2><p><a href="https://github.com/ginkgoch/node-shapefile-cli" target="_blank" rel="noopener">https://github.com/ginkgoch/node-shapefile-cli</a></p>
+<p>This is a command line tool to help to inspect a specified shapefile. It provides function to inspect a specified shapefile header, fields, records etc.</p>
+<p><img src="/assets/showcase-shapefile-cli.gif" alt="showcase-shapefile-cli"></p>
+<p>Also supports to serve this file for viewing in browser.</p>
+<p><img src="/assets/showcase-shapefile-cli-serve.png" alt="showcase-shapefile-cli-serve"></p>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/guide/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #42b983;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>Ginkgoch</div>
+      <div>2019-03-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/guide/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/guide/js/book.js"></script>

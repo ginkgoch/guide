@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/guide/favicon-v2.png" />
+    
+
+    <title>
+        
+          Geometry Class - Ginkgoch
+        
+    </title>
+
+    <meta name="keywords" content="map library, cross platform, multiple platforms, mapping software, spatial analysis">
+    <meta name="description" content="Ginkgoch provides an open source map library for crafting beautiful, cross platform mapping software for macOS, Linux and Windows from a single codebase.">
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/guide/css/book.css">
+
+    
+<script src="/guide/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/guide/">
+    <img src="/guide/favicon-v2.png">
+    <span>GINKGOCH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/guide/index">Welcome</a></li>
+<li><a href="/guide/getting-started/index">Getting Started</a><ul>
+<li><a href="/guide/getting-started/setup">Setup</a></li>
+<li><a href="/guide/getting-started/commandLine">Quick Start for CLI</a></li>
+<li><a href="/guide/getting-started/desktop">Quick Start for Desktop</a></li>
+<li><a href="/guide/getting-started/service">Quick Start for Service</a></li>
+<li><a href="/guide/getting-started/web">Quick Start for Web</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/index">Basis</a><ul>
+<li><a href="/guide/basis/geometries/index">Geometries</a><ul>
+<li><a href="/guide/basis/geometries/geometry">Geometry</a></li>
+<li><a href="/guide/basis/geometries/feature">Feature</a></li>
+<li><a href="/guide/basis/geometries/shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/styles/index">Styles</a><ul>
+<li><a href="/guide/basis/styles/style">Style</a></li>
+<li><a href="/guide/basis/styles/advanced">Advanced</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/layers/index">Layers</a><ul>
+<li><a href="/guide/basis/layers/shared">Shared</a></li>
+<li><a href="/guide/basis/layers/featureSource">FeatureSource</a></li>
+<li><a href="/guide/basis/layers/layer">Layer</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/maps/index">Map</a></li>
+</ul>
+</li>
+<li><a href="/guide/meta/index">Meta</a><ul>
+<li><a href="/guide/meta/release">Release Note</a></li>
+<li><a href="/guide/meta/showcase">Showcase</a></li>
+<li><a href="/guide/meta/faq">FAQ</a></li>
+<li><a href="/guide/meta/contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<script src="/guide/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="Geometry-Class"><a href="#Geometry-Class" class="headerlink" title="Geometry Class"></a>Geometry Class</h1><p>The base class of all geometries.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> abstract <span class="class"><span class="keyword">class</span> <span class="title">Geometry</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** The id of geometry. */</span></span><br><span class="line">    id: number;</span><br><span class="line">    <span class="comment">/** Gets the geometry type. */</span></span><br><span class="line">    <span class="keyword">get</span> type(): GeometryType;</span><br><span class="line">    /** Gets a flatten coordinates array. */</span><br><span class="line">    abstract coordinatesFlat(): Array&lt;ICoordinate&gt;;</span><br><span class="line">    /** Gets the coordinates array. */</span><br><span class="line">    abstract coordinates(): any;</span><br><span class="line">    /** Gets the centroid of this geometry. */</span><br><span class="line">    centroid(): ICoordinate;</span><br><span class="line">    /** Gets the envelope of this geometry. */</span><br><span class="line">    envelope(): Envelope;</span><br><span class="line">    /** Gets the area of this geometry. */</span><br><span class="line">    area(): number;</span><br><span class="line">    /** Gets the perimeter of this geometry. */</span><br><span class="line">    perimeter(): number;</span><br><span class="line">    /** Gets the interior point of this geometry. */</span><br><span class="line">    interiorPoint(): ICoordinate;</span><br><span class="line">    /** Converts this geometry to GeoJSON format. */</span><br><span class="line">    toJSON(): IGeoJSON;</span><br><span class="line">    /** Clones this geometry as a new one. */</span><br><span class="line">    clone(convert?: (coordinate: ICoordinate) =&gt; ICoordinate): Geometry;</span><br><span class="line">    /** Converts this geometry to WKT format. */</span><br><span class="line">    toWKT(): string;</span><br><span class="line">    /** Converts this geometry to WKB format. */</span><br><span class="line">    toWKB(bigEndian?: boolean): Buffer;</span><br><span class="line">    /** Loops all coordinates in this geometry. */</span><br><span class="line">    abstract forEachCoordinates(callback: (coordinate: ICoordinate) =&gt; void): void;</span><br><span class="line">    /** Move coordinates by the specified offset. */</span><br><span class="line">    move(offsetX: number, offsetY: number): void;</span><br><span class="line">    /** Rotates this geometry by the specified angle and origin point. */</span><br><span class="line">    rotate(angle: number, origin?: ICoordinate): void;</span><br><span class="line">    /** Detects whether this geometry contains with the specified geometry. */</span><br><span class="line">    contains(geom: Geometry): boolean;</span><br><span class="line">    /** Detects whether this geometry covers with the specified geometry. */</span><br><span class="line">    covers(geom: Geometry): boolean;</span><br><span class="line">    /** Detects whether this geometry crosses with the specified geometry. */</span><br><span class="line">    crosses(geom: Geometry): boolean;</span><br><span class="line">    /** Detects whether this geometry is disjoint with the specified geometry. */</span><br><span class="line">    disjoint(geom: Geometry): boolean;</span><br><span class="line">    /** Calculates distance between this and the specified geometry. */</span><br><span class="line">    distance(geom: Geometry): number;</span><br><span class="line">    /** Detects whether this geometry intersects with the specified geometry. */</span><br><span class="line">    intersects(geom: Geometry): boolean;</span><br><span class="line">    /** Detects whether this geometry overlaps on the specified geometry. */</span><br><span class="line">    overlaps(geom: Geometry): boolean;</span><br><span class="line">    /** Detects whether this geometry is within the specified geometry. */</span><br><span class="line">    within(geom: Geometry): boolean;</span><br><span class="line">    /** Detects whether this geometry touches on the specified geometry. */</span><br><span class="line">    touches(geom: Geometry): boolean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Point-Class"><a href="#Point-Class" class="headerlink" title="Point Class"></a>Point Class</h2><p>Extends <code>Geometry</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Point</span> <span class="keyword">extends</span> <span class="title">Geometry</span> </span>&#123;</span><br><span class="line">    x: number;</span><br><span class="line">    y: number;</span><br><span class="line">    <span class="keyword">constructor</span>(x?: number, y?: number);</span><br><span class="line">    static fromNumbers(...coordinates: number[]): Point;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="LineString-Class"><a href="#LineString-Class" class="headerlink" title="LineString Class"></a>LineString Class</h2><p>Extends <code>Geometry</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">LineString</span> <span class="keyword">extends</span> <span class="title">Geometry</span> </span>&#123;</span><br><span class="line">    _coordinates: <span class="built_in">Array</span>&lt;ICoordinate&gt;;</span><br><span class="line">    <span class="keyword">constructor</span>(coordinates?: Array&lt;ICoordinate&gt;);</span><br><span class="line">    static fromNumbers(...coordinates: number[]): LineString;</span><br><span class="line">    static fromPoints(...points: ICoordinate[]): LineString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Polygon-Class"><a href="#Polygon-Class" class="headerlink" title="Polygon Class"></a>Polygon Class</h2><p>Extends <code>Geometry</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Polygon</span> <span class="keyword">extends</span> <span class="title">Geometry</span> </span>&#123;</span><br><span class="line">    externalRing: LinearRing;</span><br><span class="line">    internalRings: <span class="built_in">Array</span>&lt;LinearRing&gt;;</span><br><span class="line">    <span class="keyword">constructor</span>(externalRing?: LinearRing, ...internalRings: LinearRing[]);</span><br><span class="line">    static fromNumbers(...coordinates: number[][]): Polygon;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="GeometryCollectionBase-Class"><a href="#GeometryCollectionBase-Class" class="headerlink" title="GeometryCollectionBase Class"></a>GeometryCollectionBase Class</h2><p>Extends <code>Geometry</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> abstract <span class="class"><span class="keyword">class</span> <span class="title">GeometryCollectionBase</span>&lt;<span class="title">T</span> <span class="keyword">extends</span> <span class="title">Geometry</span>&gt; <span class="keyword">extends</span> <span class="title">Geometry</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(geometries?: Array&lt;T&gt;);</span><br><span class="line">    <span class="keyword">get</span> children(): T[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="MultiPoint-Class-Class"><a href="#MultiPoint-Class-Class" class="headerlink" title="MultiPoint Class Class"></a>MultiPoint Class Class</h2><p>Extends <code>Geometry</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiPoint</span> <span class="keyword">extends</span> <span class="title">GeometryCollectionBase</span>&lt;<span class="title">Point</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(points?: Point[]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="MultiLineString-Class"><a href="#MultiLineString-Class" class="headerlink" title="MultiLineString Class"></a>MultiLineString Class</h2><p>Extends <code>GeometryCollectionBase&lt;Point&gt;</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiLineString</span> <span class="keyword">extends</span> <span class="title">GeometryCollectionBase</span>&lt;<span class="title">LineString</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(lines?: LineString[]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="MultiPolygon-Class"><a href="#MultiPolygon-Class" class="headerlink" title="MultiPolygon Class"></a>MultiPolygon Class</h2><p>Extends <code>GeometryCollectionBase&lt;Polygon&gt;</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">MultiPolygon</span> <span class="keyword">extends</span> <span class="title">GeometryCollectionBase</span>&lt;<span class="title">Polygon</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(polygon?: Polygon[]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="GeometryCollection-Class"><a href="#GeometryCollection-Class" class="headerlink" title="GeometryCollection Class"></a>GeometryCollection Class</h2><p>Extends <code>GeometryCollectionBase&lt;Geometry&gt;</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">GeometryCollection</span> <span class="keyword">extends</span> <span class="title">GeometryCollectionBase</span>&lt;<span class="title">Geometry</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(geometries?: Geometry[]);</span><br><span class="line">    <span class="keyword">get</span> geometries(): Geometry[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="GeometryFactory-Class"><a href="#GeometryFactory-Class" class="headerlink" title="GeometryFactory Class"></a>GeometryFactory Class</h2><p>All Geometries could be constructed by <code>GeometryFactory</code>. It also provides some shortcut of building some special polygons.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">GeometryFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> buildCircle(center: ICoordinate, <span class="attr">radius</span>: number, segments?: number): Polygon;</span><br><span class="line">    <span class="keyword">static</span> buildEllipse(center: ICoordinate, <span class="attr">radiusX</span>: number, <span class="attr">radiusY</span>: number, segments?: number): Polygon;</span><br><span class="line">    <span class="keyword">static</span> buildStar(center: ICoordinate, <span class="attr">vertexCount</span>: number, <span class="attr">radiusLong</span>: number, radiusShort?: number): Polygon;</span><br><span class="line">    <span class="keyword">static</span> buildSquare(center: ICoordinate, <span class="attr">sideLength</span>: number): Polygon;</span><br><span class="line">    <span class="keyword">static</span> buildRectangle(center: ICoordinate, <span class="attr">width</span>: number, <span class="attr">height</span>: number): Polygon;</span><br><span class="line">    <span class="keyword">static</span> envelopeAsPolygon(envelope: IEnvelope): Polygon;</span><br><span class="line">    <span class="keyword">static</span> envelopeAsLinearRing(envelope: IEnvelope): LinearRing;</span><br><span class="line">    <span class="keyword">static</span> create(wkt: string): Geometry;</span><br><span class="line">    <span class="keyword">static</span> create(wkb: Buffer): Geometry;</span><br><span class="line">    <span class="keyword">static</span> create(geoJson: IGeoJSON): Geometry;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/guide/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #42b983;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>Ginkgoch</div>
+      <div>2019-03-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/guide/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/guide/js/book.js"></script>

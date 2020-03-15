@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/guide/favicon-v2.png" />
+    
+
+    <title>
+        
+          Quick Started for Web - Ginkgoch
+        
+    </title>
+
+    <meta name="keywords" content="map library, cross platform, multiple platforms, mapping software, spatial analysis">
+    <meta name="description" content="Ginkgoch provides an open source map library for crafting beautiful, cross platform mapping software for macOS, Linux and Windows from a single codebase.">
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/guide/css/book.css">
+
+    
+<script src="/guide/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/guide/">
+    <img src="/guide/favicon-v2.png">
+    <span>GINKGOCH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/guide/index">Welcome</a></li>
+<li><a href="/guide/getting-started/index">Getting Started</a><ul>
+<li><a href="/guide/getting-started/setup">Setup</a></li>
+<li><a href="/guide/getting-started/commandLine">Quick Start for CLI</a></li>
+<li><a href="/guide/getting-started/desktop">Quick Start for Desktop</a></li>
+<li><a href="/guide/getting-started/service">Quick Start for Service</a></li>
+<li><a href="/guide/getting-started/web">Quick Start for Web</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/index">Basis</a><ul>
+<li><a href="/guide/basis/geometries/index">Geometries</a><ul>
+<li><a href="/guide/basis/geometries/geometry">Geometry</a></li>
+<li><a href="/guide/basis/geometries/feature">Feature</a></li>
+<li><a href="/guide/basis/geometries/shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/styles/index">Styles</a><ul>
+<li><a href="/guide/basis/styles/style">Style</a></li>
+<li><a href="/guide/basis/styles/advanced">Advanced</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/layers/index">Layers</a><ul>
+<li><a href="/guide/basis/layers/shared">Shared</a></li>
+<li><a href="/guide/basis/layers/featureSource">FeatureSource</a></li>
+<li><a href="/guide/basis/layers/layer">Layer</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/maps/index">Map</a></li>
+</ul>
+</li>
+<li><a href="/guide/meta/index">Meta</a><ul>
+<li><a href="/guide/meta/release">Release Note</a></li>
+<li><a href="/guide/meta/showcase">Showcase</a></li>
+<li><a href="/guide/meta/faq">FAQ</a></li>
+<li><a href="/guide/meta/contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<script src="/guide/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="Quick-Started-for-Web"><a href="#Quick-Started-for-Web" class="headerlink" title="Quick Started for Web"></a>Quick Started for Web</h1><blockquote>
+<p>This quick started guide assumes the <a href="GettingStarted/Setup">setup</a> page is read and the environment is prepared.<br>The complete source code is in <a href="https://github.com/ginkgoch/node-map-quickstart/tree/master/quick-started-web" target="_blank" rel="noopener">github</a>.</p>
+</blockquote>
+<p>In the previous <a href="GettingStarted/Service">quick start guide for service</a>, we setup a tiled map service by accessing map tiles by XYZ standard. This guide, we will continue working on this project to add client code to build an interactive map.</p>
+<h2 id="User-Story"><a href="#User-Story" class="headerlink" title="User Story"></a>User Story</h2><p>For a software development, defining the user story is the first thing. Our quick started user story is this.</p>
+<blockquote>
+<p>I need a B/S map software with a map that can pan, zoom and allows to show me the detail information where I clicked.</p>
+</blockquote>
+<h2 id="Let’s-Get-Started"><a href="#Let’s-Get-Started" class="headerlink" title="Let’s Get Started"></a>Let’s Get Started</h2><p>A web application could be two ways. one is completely backend and frontend separated (e.g. client + RESTful); another one is to to render the HTML pages on the server part (e.g. express.js + templates). In this guide, I will use the former one. For we could reuse our existing services, and our project could be cleaner structural.</p>
+<h3 id="Prepare-The-Project-Baseline"><a href="#Prepare-The-Project-Baseline" class="headerlink" title="Prepare The Project Baseline"></a>Prepare The Project Baseline</h3><p>Let’s prepare the project baseline. Assume our <a href="GettingStarted/Service">previous quick start for service</a> is completed and folder name is <code>quick-started-service</code>. We will reuse the code in this project.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># copy the previous project as our current quick start project baseline</span></span><br><span class="line">cp -r quick-started-service quick-started-web</span><br><span class="line"><span class="built_in">cd</span> quick-started-web</span><br><span class="line">yarn</span><br><span class="line">code .</span><br></pre></td></tr></table></figure>
+
+<p>Now, we have the project baseline and opened this project with <code>visual studio code</code>.</p>
+<h3 id="Build-an-Initial-Map-View"><a href="#Build-an-Initial-Map-View" class="headerlink" title="Build an Initial Map View"></a>Build an Initial Map View</h3><p>Create a folder <code>client</code> and a file <code>index.html</code> inside.</p>
+<p>Install <code>Leaflet</code> as our map UI component.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add leaflet</span><br></pre></td></tr></table></figure>
+
+<p>Paste the html code into <code>client/index.html</code>.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"../node_modules/leaflet/dist/leaflet.css"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"> <span class="selector-tag">html</span>, <span class="selector-tag">body</span>, <span class="selector-id">#mapApp</span> &#123; <span class="attribute">margin</span>: <span class="number">0px</span>; <span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>; &#125; </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"mapApp"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../node_modules/leaflet/dist/leaflet.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> map = L.map(<span class="string">'mapApp'</span>).setView([<span class="number">0</span>, <span class="number">0</span>], <span class="number">2</span>);</span></span><br><span class="line"><span class="actionscript">        L.tileLayer(<span class="string">'http://localhost:5500/maps/default/&#123;z&#125;/&#123;x&#125;/&#123;y&#125;'</span>, &#123;</span></span><br><span class="line"><span class="handlebars"><span class="xml">            attribution: '<span class="symbol">&amp;copy;</span> <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://ginkgoch.com"</span>&gt;</span>Ginkgoch MAP<span class="tag">&lt;/<span class="name">a</span>&gt;</span> contributors'</span></span></span><br><span class="line">        &#125;).addTo(map);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>NOTE: this is also from <code>Leaflet</code> quick start tutorial with the map service URL replaced, <code>http://localhost:5500/maps/default/{z}/{x}/{y}</code>. The attribution is replaced as well 😎.</p>
+<p>Now we can launch our server by <code>node index.js</code> and drag the <code>client/index.html</code> into browser. An initial map view will be represented in front of you.</p>
+<p><img src="/assets/web-init-map.gif" alt="web-init-map"></p>
+<h3 id="Refactor-the-Code-for-More-APIs"><a href="#Refactor-the-Code-for-More-APIs" class="headerlink" title="Refactor the Code for More APIs"></a>Refactor the Code for More APIs</h3><p>Now, we are going to add more APIs (e.g. <code>identify</code>) on this HTTP server. Let’s refactor the code as following.</p>
+<p>Basically, three changes are straight forward.</p>
+<ol>
+<li>Extract a function to get the <code>MapEngine</code> instance.</li>
+<li>Extract a function for serving XYZ tile service.</li>
+<li>Handle the route handlers in a loop.</li>
+</ol>
+<blockquote>
+<p>Don’t be afraid to refactor, it seems more code, but it also makes it extensible and re-usable, less code for future features.</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> G = <span class="built_in">require</span>(<span class="string">'ginkgoch-map'</span>).default.all;</span><br><span class="line"></span><br><span class="line"><span class="comment">// register native graphics and it is the most important one</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'ginkgoch-map/native/node'</span>).init();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> port = <span class="number">5500</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">serve</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> server = http.createServer(<span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> handled = <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">// handle the route handlers in a loop.</span></span><br><span class="line">        <span class="keyword">let</span> routeHandlers = [handleTileRoute]; <span class="comment">// new route handlers will be added in this array later</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> routeHandler <span class="keyword">of</span> routeHandlers) &#123;</span><br><span class="line">            handled = <span class="keyword">await</span> routeHandler(req, res);</span><br><span class="line">            <span class="keyword">if</span> (handled) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!handled) &#123;</span><br><span class="line">            <span class="built_in">console</span>.debug(<span class="string">`URL not handled: <span class="subst">$&#123;req.url&#125;</span>`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    server.listen(port, () =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Server is served at http://localhost:<span class="subst">$&#123;port&#125;</span>`</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getTileImage</span>(<span class="params">x, y, z</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> mapEngine = getMap();</span><br><span class="line">    <span class="keyword">let</span> mapImage = <span class="keyword">await</span> mapEngine.xyz(x, y, z);</span><br><span class="line">    <span class="keyword">return</span> mapImage.toBuffer();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// extract a function to get the `MapEngine` instance.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> sourcePath = path.resolve(__dirname, <span class="string">`../data/cntry02.shp`</span>);</span><br><span class="line">    <span class="keyword">let</span> source = <span class="keyword">new</span> G.ShapefileFeatureSource(sourcePath);</span><br><span class="line">    <span class="keyword">let</span> layer = <span class="keyword">new</span> G.FeatureLayer(source);</span><br><span class="line">    layer.styles.push(<span class="keyword">new</span> G.FillStyle(<span class="string">'#f0f0f0'</span>, <span class="string">'#636363'</span>, <span class="number">1</span>));</span><br><span class="line">    <span class="keyword">let</span> mapEngine = <span class="keyword">new</span> G.MapEngine(<span class="number">256</span>, <span class="number">256</span>);</span><br><span class="line">    mapEngine.pushLayer(layer);</span><br><span class="line">    <span class="keyword">return</span> mapEngine;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// extract a function for serving XYZ tile service.</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">handleTileRoute</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> handled = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// parse the route: /maps/default/&#123;z&#125;/&#123;x&#125;/&#123;y&#125;</span></span><br><span class="line">    <span class="keyword">if</span> (req.url.match(<span class="regexp">/maps\/default(\/\d+)&#123;3&#125;/</span>)) &#123;</span><br><span class="line">        <span class="comment">// parse x, y, z from url</span></span><br><span class="line">        <span class="keyword">let</span> segments = req.url.split(<span class="string">'/'</span>);</span><br><span class="line">        <span class="keyword">let</span> [z, x, y] = segments.slice(segments.length - <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// draw tile image</span></span><br><span class="line">        <span class="keyword">let</span> tileImage = <span class="keyword">await</span> getTileImage(x, y, z);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// write respond</span></span><br><span class="line">        res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'image/png'</span>&#125;);</span><br><span class="line">        res.end(tileImage);</span><br><span class="line">        handled = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> handled;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">serve();</span><br></pre></td></tr></table></figure>
+
+<h3 id="Identify-Features-RESTful-API"><a href="#Identify-Features-RESTful-API" class="headerlink" title="Identify Features RESTful API"></a>Identify Features RESTful API</h3><p><code>Identify</code> allows to find regions of a map within a specified distance of one or more features. It is a basic spatial analysis operation.</p>
+<p>Assume our new API is <code>GET: /maps/default/{layerName}/query</code> also the clicked information is included in query string. e.g. <code>GET: /maps/default/{layerName}/query?lat=0&amp;lng+0&amp;zoom=0</code> will find the features around longitude 0, latitude 0 under zoom level 0 (of course there is no features around there).</p>
+<p>Refer the following code for the identifying.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// handle the identify route</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">handleIdentifyRoute</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> handled = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// parse the route: /maps/default/&#123;layerName&#125;/query</span></span><br><span class="line">    <span class="keyword">if</span> (req.url.match(<span class="regexp">/maps\/default\/\w+\/query/ig</span>)) &#123;</span><br><span class="line">        <span class="keyword">let</span> parameters = parseIdentifyParameters(req);</span><br><span class="line">        <span class="keyword">let</span> features = <span class="keyword">await</span> getIdentifyFeatures(parameters);</span><br><span class="line">        <span class="keyword">let</span> featureCollection = <span class="keyword">new</span> G.FeatureCollection(features)</span><br><span class="line">        res.end(<span class="built_in">JSON</span>.stringify(featureCollection.toJSON()));</span><br><span class="line">        handled = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> handled;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getIdentifyFeatures</span>(<span class="params">parameters</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> projection = <span class="keyword">new</span> G.Projection(<span class="string">'WGS84'</span>, <span class="string">'EPSG:3857'</span>);</span><br><span class="line">    <span class="keyword">let</span> clickedPoint = <span class="keyword">new</span> G.Point(parameters.lng, parameters.lat);</span><br><span class="line">    clickedPoint = projection.forward(clickedPoint);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> mapEngine = getMap();</span><br><span class="line">    <span class="keyword">let</span> layer = mapEngine.layer(<span class="string">'cntry02'</span>);</span><br><span class="line">    <span class="keyword">if</span> (layer === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> [];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> layer.open();</span><br><span class="line">    <span class="keyword">let</span> features = <span class="keyword">await</span> layer.source.query(<span class="string">'intersection'</span>, clickedPoint);</span><br><span class="line">    features.forEach(<span class="function"><span class="params">f</span> =&gt;</span> f.geometry = projection.inverse(f.geometry));</span><br><span class="line">    <span class="keyword">return</span> features;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseIdentifyParameters</span>(<span class="params">req</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> queryStringStarts = req.url.lastIndexOf(<span class="string">'?'</span>);</span><br><span class="line">    <span class="keyword">let</span> lat = <span class="literal">undefined</span>, lng = <span class="literal">undefined</span>, zoom = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">if</span> (queryStringStarts !== <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> queryString = req.url.slice(queryStringStarts + <span class="number">1</span>);</span><br><span class="line">        queryString.split(<span class="string">'&amp;'</span>).map(<span class="function"><span class="params">s</span> =&gt;</span> s.split(<span class="string">'='</span>)).forEach(<span class="function"><span class="params">s</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">switch</span> (s[<span class="number">0</span>].toLowerCase()) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'lat'</span>: lat = <span class="built_in">parseFloat</span>(s[<span class="number">1</span>]); <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'lng'</span>: lng = <span class="built_in">parseFloat</span>(s[<span class="number">1</span>]); <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'zoom'</span>: zoom = <span class="built_in">parseInt</span>(s[<span class="number">1</span>]); <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> url = req.url.slice(<span class="number">0</span>, queryStringStarts);</span><br><span class="line">    <span class="keyword">let</span> segments = url.split(<span class="string">'/'</span>);</span><br><span class="line">    <span class="keyword">let</span> layer = segments[segments.length - <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123; layer, lat, lng, zoom &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Don’t forget to register the identifying route in the top in the <code>serve</code> function.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> routeHandlers = [handleTileRoute, handleIdentifyRoute];</span><br></pre></td></tr></table></figure>
+
+<p>Try the url: <a href="http://localhost:5500/maps/default/cntry02/query?lat=30&amp;lng=90&amp;zoom=2" target="_blank" rel="noopener">http://localhost:5500/maps/default/cntry02/query?lat=30&amp;lng=90&amp;zoom=2</a> to verify the result. This responses a typical <code>FeatureCollection</code> in <code>GeoJSON</code> format.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"id"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">"type"</span>: <span class="string">"FeatureCollection"</span>,</span><br><span class="line">    <span class="attr">"features"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"id"</span>: <span class="number">47</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"Feature"</span>,</span><br><span class="line">            <span class="attr">"geometry"</span>: &#123;</span><br><span class="line">                <span class="attr">"type"</span>: <span class="string">"MultiPolygon"</span>,</span><br><span class="line">                <span class="attr">"coordinates"</span>: [</span><br><span class="line">                    [</span><br><span class="line">                        [</span><br><span class="line">                            [</span><br><span class="line">                                <span class="number">97.64997863769533</span>,</span><br><span class="line">                                <span class="number">23.851703643798817</span></span><br><span class="line">                            ],</span><br><span class="line">                            ...</span><br><span class="line">                        ]</span><br><span class="line">                    ]</span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">"properties"</span>: &#123;</span><br><span class="line">                <span class="attr">"FIPS_CNTRY"</span>: <span class="string">"CH"</span>,</span><br><span class="line">                <span class="attr">"GMI_CNTRY"</span>: <span class="string">"CHN"</span>,</span><br><span class="line">                <span class="attr">"ISO_2DIGIT"</span>: <span class="string">"CN"</span>,</span><br><span class="line">                <span class="attr">"ISO_3DIGIT"</span>: <span class="string">"CHN"</span>,</span><br><span class="line">                <span class="attr">"CNTRY_NAME"</span>: <span class="string">"China"</span>,</span><br><span class="line">                <span class="attr">"LONG_NAME"</span>: <span class="string">"China"</span>,</span><br><span class="line">                <span class="attr">"SOVEREIGN"</span>: <span class="string">"China"</span>,</span><br><span class="line">                <span class="attr">"POP_CNTRY"</span>: <span class="number">1281396894</span>,</span><br><span class="line">                <span class="attr">"CURR_TYPE"</span>: <span class="string">"Renminbi Yuan"</span>,</span><br><span class="line">                <span class="attr">"CURR_CODE"</span>: <span class="string">"CNY"</span>,</span><br><span class="line">                <span class="attr">"LANDLOCKED"</span>: <span class="string">"N"</span>,</span><br><span class="line">                <span class="attr">"SQKM"</span>: <span class="number">9367345</span>,</span><br><span class="line">                <span class="attr">"SQMI"</span>: <span class="number">3616732</span>,</span><br><span class="line">                <span class="attr">"COLOR_MAP"</span>: <span class="string">"2"</span>,</span><br><span class="line">                <span class="attr">"RECID"</span>: <span class="number">47</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Till now, our <code>identify</code> spatial analysis API is ready. Let’s get back to the client code <code>client/index.html</code>.</p>
+<h3 id="Identify-Operation-on-Map"><a href="#Identify-Operation-on-Map" class="headerlink" title="Identify Operation on Map"></a>Identify Operation on Map</h3><p>We are pretty close to the end. The last thing is about to trigger the identifying operation on map click event.</p>
+<p>Open <code>client/index.html</code> and append the following code to the bottom:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> onPopup = <span class="function"><span class="keyword">function</span> (<span class="params">layer</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> properties = layer.feature.properties;</span><br><span class="line">    <span class="keyword">let</span> content = <span class="string">'&lt;div class="popup-container"&gt;&lt;table class="table table-sm table-striped"&gt;'</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> properties) &#123;</span><br><span class="line">        content += <span class="string">`&lt;tr&gt;&lt;td&gt;<span class="subst">$&#123;key&#125;</span>&lt;/td&gt;&lt;td&gt;<span class="subst">$&#123;properties[key]&#125;</span>&lt;/td&gt;&lt;/tr&gt;`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    content += <span class="string">'&lt;/table&gt;&lt;/div&gt;'</span>;</span><br><span class="line">    <span class="keyword">return</span> content;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> style = &#123;<span class="string">'color'</span>: <span class="string">'#ff7800'</span>, <span class="string">'weight'</span>: <span class="number">1</span>, <span class="string">'opacity'</span>: <span class="number">0.65</span>&#125;;</span><br><span class="line"><span class="keyword">let</span> geoJSONLayer = L.geoJSON([], &#123; style &#125;).bindPopup(onPopup).addTo(map);</span><br><span class="line"><span class="keyword">let</span> popup = <span class="literal">undefined</span>;</span><br><span class="line"></span><br><span class="line">map.on(<span class="string">'click'</span>, evt =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> &#123;lat, lng&#125; = evt.latlng;</span><br><span class="line">    <span class="keyword">let</span> zoom = map.getZoom();</span><br><span class="line">    <span class="keyword">let</span> url = <span class="string">`http://localhost:5500/maps/default/cntry02/query?lat=<span class="subst">$&#123;lat&#125;</span>&amp;lng=<span class="subst">$&#123;lng&#125;</span>&amp;zoom=<span class="subst">$&#123;zoom&#125;</span>`</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> oReq = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    oReq.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (oReq.readyState === XMLHttpRequest.DONE) &#123;</span><br><span class="line">            <span class="keyword">let</span> geoJSON = <span class="built_in">JSON</span>.parse(oReq.responseText);</span><br><span class="line">            geoJSONLayer.clearLayers();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (geoJSON.features.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                geoJSONLayer.addData(geoJSON);</span><br><span class="line">                geoJSONLayer.openPopup();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    oReq.open(<span class="string">"GET"</span>, url);</span><br><span class="line">    oReq.send();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Open browser, refresh the <code>index.html</code> page.</p>
+<p><img src="/assets/web-map-identify.gif" alt="web-map-identify"></p>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/guide/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #42b983;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>Ginkgoch</div>
+      <div>2019-03-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/guide/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/guide/js/book.js"></script>

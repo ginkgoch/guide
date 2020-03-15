@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/guide/favicon-v2.png" />
+    
+
+    <title>
+        
+          FeatureSource Shared Modules - Ginkgoch
+        
+    </title>
+
+    <meta name="keywords" content="map library, cross platform, multiple platforms, mapping software, spatial analysis">
+    <meta name="description" content="Ginkgoch provides an open source map library for crafting beautiful, cross platform mapping software for macOS, Linux and Windows from a single codebase.">
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/guide/css/book.css">
+
+    
+<script src="/guide/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/guide/">
+    <img src="/guide/favicon-v2.png">
+    <span>GINKGOCH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/guide/index">Welcome</a></li>
+<li><a href="/guide/getting-started/index">Getting Started</a><ul>
+<li><a href="/guide/getting-started/setup">Setup</a></li>
+<li><a href="/guide/getting-started/commandLine">Quick Start for CLI</a></li>
+<li><a href="/guide/getting-started/desktop">Quick Start for Desktop</a></li>
+<li><a href="/guide/getting-started/service">Quick Start for Service</a></li>
+<li><a href="/guide/getting-started/web">Quick Start for Web</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/index">Basis</a><ul>
+<li><a href="/guide/basis/geometries/index">Geometries</a><ul>
+<li><a href="/guide/basis/geometries/geometry">Geometry</a></li>
+<li><a href="/guide/basis/geometries/feature">Feature</a></li>
+<li><a href="/guide/basis/geometries/shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/styles/index">Styles</a><ul>
+<li><a href="/guide/basis/styles/style">Style</a></li>
+<li><a href="/guide/basis/styles/advanced">Advanced</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/layers/index">Layers</a><ul>
+<li><a href="/guide/basis/layers/shared">Shared</a></li>
+<li><a href="/guide/basis/layers/featureSource">FeatureSource</a></li>
+<li><a href="/guide/basis/layers/layer">Layer</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/maps/index">Map</a></li>
+</ul>
+</li>
+<li><a href="/guide/meta/index">Meta</a><ul>
+<li><a href="/guide/meta/release">Release Note</a></li>
+<li><a href="/guide/meta/showcase">Showcase</a></li>
+<li><a href="/guide/meta/faq">FAQ</a></li>
+<li><a href="/guide/meta/contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<script src="/guide/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="FeatureSource-Shared-Modules"><a href="#FeatureSource-Shared-Modules" class="headerlink" title="FeatureSource Shared Modules"></a>FeatureSource Shared Modules</h1><h2 id="Field-Class"><a href="#Field-Class" class="headerlink" title="Field Class"></a>Field Class</h2><p>This class maintains a field definition of a feature source. It is a general field definition for almost all feature sources. A field is formed with name, data type, length of a field to store corresponding value, and an extra hash map (key - value pairs) to store other infos that are not covered by pre-defined properties.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> declare <span class="class"><span class="keyword">class</span> <span class="title">Field</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The name of the field.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    name: string;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The data type of the field.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    type: string;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The maximum data length of the field.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    length: number;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The extra info of the field.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    extra: <span class="built_in">Map</span>&lt;string, any&gt;;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Constructs a field instance.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;string&#125;</span> </span>name Field name.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;string&#125;</span> </span>type Field data type.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;number&#125;</span> </span>length Field data length.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;any|Map&#125;</span> </span>extra Field extra info. Optional, it can be either an object or Map.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">constructor</span>(name?: string, type?: string, length?: number, extra?: any);</span><br><span class="line">    /**</span><br><span class="line">     * Converts current instance into JSON format.</span><br><span class="line">     */</span><br><span class="line">    toJSON(): &#123;</span><br><span class="line">        name: string;</span><br><span class="line">        type: string;</span><br><span class="line">        length: number;</span><br><span class="line">        extra: any;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Parse JSON format data to a concrete instance.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@static</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;any&#125;</span> </span>json JSON format data.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@returns <span class="type">&#123;Field&#125;</span> </span>A field instance that is converted from the JSON data.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> parseJSON(json: any): Field;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Srs-Class"><a href="#Srs-Class" class="headerlink" title="Srs Class"></a>Srs Class</h2><p>This class represents the SRS info (spatial reference system).</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> declare <span class="class"><span class="keyword">class</span> <span class="title">Srs</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Constructs a SRS info instance.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;string&#125;</span> </span>projection The projection string; can be either proj4, EPSG name or WKT.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">constructor</span>(projection?: string);</span><br><span class="line">    /**</span><br><span class="line">     * Gets the unit of SRS.</span><br><span class="line">     */</span><br><span class="line">    <span class="keyword">get</span> unit(): Unit;</span><br><span class="line">    /**</span><br><span class="line">     * A shortcut property to <span class="keyword">get</span> the projection string; can be either proj4, EPSG name or WKT.</span><br><span class="line">     */</span><br><span class="line">    <span class="keyword">get</span> projection(): string | undefined;</span><br><span class="line">    /**</span><br><span class="line">     * Sets the projection string; can be either proj4, EPSG name or WKT.</span><br><span class="line">     */</span><br><span class="line">    <span class="keyword">set</span> projection(projection: string | undefined);</span><br><span class="line">    /**</span><br><span class="line">     * Converts this SRS instance into a JSON format data.</span><br><span class="line">     * @returns &#123;any&#125; A <span class="built_in">JSON</span> format data <span class="keyword">of</span> <span class="keyword">this</span> SRS.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    toJSON(): &#123;</span></span><br><span class="line"><span class="regexp">        projection: string | undefined;</span></span><br><span class="line"><span class="regexp">        unit: Unit;</span></span><br><span class="line"><span class="regexp">    &#125;;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * Parses the <span class="built_in">JSON</span> format data into a SRS instance. If the data doesn<span class="string">'t match the SRS schema, it throws exception.</span></span><br><span class="line"><span class="string">     * @param json</span></span><br><span class="line"><span class="string">     */</span></span><br><span class="line"><span class="string">    static parseJSON(json: any): Srs;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="PropertyAggregator-Class"><a href="#PropertyAggregator-Class" class="headerlink" title="PropertyAggregator Class"></a>PropertyAggregator Class</h2><p>This class represents a utility for aggregating property data from a feature source.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> declare <span class="class"><span class="keyword">class</span> <span class="title">PropertyAggregator</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The properties for aggregating.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    properties: <span class="built_in">Array</span>&lt;<span class="built_in">Map</span>&lt;string, any&gt;&gt;;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Constructs an aggregator instance.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;Array&lt;Map&lt;string, any&gt;&gt;&#125;</span> </span>properties The properties for aggregating.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">constructor</span>(properties: Array&lt;Map&lt;string, any&gt;&gt;);</span><br><span class="line">    /**</span><br><span class="line">     * Selects values by a specific field name.</span><br><span class="line">     * @param &#123;string&#125; field The field name to filter <span class="keyword">from</span> the source property data.</span><br><span class="line">     * @returns &#123;any[]&#125; An array <span class="keyword">of</span> field values <span class="keyword">of</span> the specified field name.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    select(field: string, sort?: boolean, sortFn?: (a: any, b: any) =&gt; number): any[];</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * Select values by a specific field name and <span class="keyword">get</span> rid of the duplicated values.</span><br><span class="line">     * @param &#123;string&#125; field The field name to filter <span class="keyword">from</span> the source property data.</span><br><span class="line">     * @param &#123;boolean&#125; sort Whether the <span class="keyword">return</span> values need to be sorted.</span><br><span class="line">     * @returns &#123;any[]&#125; An array <span class="keyword">of</span> distinct field values <span class="keyword">of</span> the specified field name.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    distinct(field: string, sort?: boolean): any[];</span></span><br><span class="line"><span class="regexp">    breakDownValues(field: string, breakCount: number, breakBy?: 'value' | 'position'): Array&lt;&#123;</span></span><br><span class="line"><span class="regexp">        minimum: number;</span></span><br><span class="line"><span class="regexp">        maximum: number;</span></span><br><span class="line"><span class="regexp">    &#125;&gt;;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * Gets some general aggregated result <span class="keyword">from</span> a specific field name.</span><br><span class="line">     * @param &#123;string&#125; field The field name to calculate the general aggregated result.</span><br><span class="line">     * @returns &#123;AggregationResult&#125; The general aggregation result.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    general(field: string): AggregationResult;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="FeatureSourceFactory-Class"><a href="#FeatureSourceFactory-Class" class="headerlink" title="FeatureSourceFactory Class"></a>FeatureSourceFactory Class</h2><p>This class is a shortcut to build FeatureSource instance.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> declare <span class="class"><span class="keyword">class</span> <span class="title">FeatureSourceFactory</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Parse supported feature source json data into a corresponding FeatureSource instance.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;any&#125;</span> </span>json The JSON format data of a feature source.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> parseJSON(json: any): MemoryFeatureSource | ShapefileFeatureSource | <span class="literal">undefined</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/guide/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #42b983;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>Ginkgoch</div>
+      <div>2019-03-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/guide/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/guide/js/book.js"></script>

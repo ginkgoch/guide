@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/guide/favicon-v2.png" />
+    
+
+    <title>
+        
+          Map - Ginkgoch
+        
+    </title>
+
+    <meta name="keywords" content="map library, cross platform, multiple platforms, mapping software, spatial analysis">
+    <meta name="description" content="Ginkgoch provides an open source map library for crafting beautiful, cross platform mapping software for macOS, Linux and Windows from a single codebase.">
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/guide/css/book.css">
+
+    
+<script src="/guide/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/guide/">
+    <img src="/guide/favicon-v2.png">
+    <span>GINKGOCH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/guide/index">Welcome</a></li>
+<li><a href="/guide/getting-started/index">Getting Started</a><ul>
+<li><a href="/guide/getting-started/setup">Setup</a></li>
+<li><a href="/guide/getting-started/commandLine">Quick Start for CLI</a></li>
+<li><a href="/guide/getting-started/desktop">Quick Start for Desktop</a></li>
+<li><a href="/guide/getting-started/service">Quick Start for Service</a></li>
+<li><a href="/guide/getting-started/web">Quick Start for Web</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/index">Basis</a><ul>
+<li><a href="/guide/basis/geometries/index">Geometries</a><ul>
+<li><a href="/guide/basis/geometries/geometry">Geometry</a></li>
+<li><a href="/guide/basis/geometries/feature">Feature</a></li>
+<li><a href="/guide/basis/geometries/shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/styles/index">Styles</a><ul>
+<li><a href="/guide/basis/styles/style">Style</a></li>
+<li><a href="/guide/basis/styles/advanced">Advanced</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/layers/index">Layers</a><ul>
+<li><a href="/guide/basis/layers/shared">Shared</a></li>
+<li><a href="/guide/basis/layers/featureSource">FeatureSource</a></li>
+<li><a href="/guide/basis/layers/layer">Layer</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/maps/index">Map</a></li>
+</ul>
+</li>
+<li><a href="/guide/meta/index">Meta</a><ul>
+<li><a href="/guide/meta/release">Release Note</a></li>
+<li><a href="/guide/meta/showcase">Showcase</a></li>
+<li><a href="/guide/meta/faq">FAQ</a></li>
+<li><a href="/guide/meta/contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<script src="/guide/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h1><p><code>Map</code> is end of our basis tour. It forms with layers. You can simply configure the map settings and it returns a rendered map surface.</p>
+<h2 id="Typical-map-usage-examples"><a href="#Typical-map-usage-examples" class="headerlink" title="Typical map usage examples"></a>Typical map usage examples</h2><ul>
+<li><p>Get map instance.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> source = <span class="keyword">new</span> ShapefileFeatureSource(<span class="string">'./ShapeFileData.shp'</span>);</span><br><span class="line">    <span class="keyword">const</span> layer = <span class="keyword">new</span> FeatureLayer(source);</span><br><span class="line">    layer.pushStyles([<span class="keyword">new</span> FillStyle(<span class="string">'yellow'</span>, <span class="string">'blue'</span>, <span class="number">1</span>)]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> map = <span class="keyword">new</span> MapEngine(<span class="number">256</span>, <span class="number">256</span>);</span><br><span class="line">    map.pushLayer(layer);</span><br><span class="line">    <span class="keyword">return</span> map;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Render it as an image</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">saveMapAsImageFile</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> map = getMap();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> image = <span class="keyword">await</span> map.draw();</span><br><span class="line">    <span class="keyword">const</span> imageBuffer = image.toBuffer();</span><br><span class="line">    fs.writeFileSync(<span class="string">'result.png'</span>, imageBuffer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Serve for tile mapping service in XYZ standard</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getTileImage</span>(<span class="params">x: number, y: number, z: number</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> map = getMap();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> mapImage = <span class="keyword">await</span> map.xyz(x, y, z);</span><br><span class="line">    <span class="keyword">return</span> mapImage.toBuffer();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Query Spatially on feature source</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">spatialQuery</span>(<span class="params">geom: Geometry</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> map = getMap();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// `WGS84` is the geom CRS, used for re-projection when necessary</span></span><br><span class="line">    <span class="comment">// 2 is zoom level of current map state </span></span><br><span class="line">    <span class="keyword">let</span> features = <span class="keyword">await</span> map.intersection(geom, <span class="string">'WGS84'</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> features;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="MapEngine-Class"><a href="#MapEngine-Class" class="headerlink" title="MapEngine Class"></a>MapEngine Class</h2><p>This class represents a complete structure of a map instance. It wraps necessary information that are used for a map rendering. A complete demo to create a map and draw as an image, then save to disk.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> declare <span class="class"><span class="keyword">class</span> <span class="title">MapEngine</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The name of map.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    name: string;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * This map's spatial reference system. It applies as the target SRS to each feature source.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    srs: Srs;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The width of this map</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    width: number;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The height of this map.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    height: number;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The background color. Default to undefined which means transparent background.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    background?: string;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The maximum visible scale. Defaults to positive infinity.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    maximumScale: number;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The minimum visible scale. Default to 0.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    minimumScale: number;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The layer groups that maintains the layers inside for rendering.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    groups: <span class="built_in">Array</span>&lt;LayerGroup&gt;;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The scales list for defining the zoom levels for rendering.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    scales: <span class="built_in">Array</span>&lt;number&gt;;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Indicates the tile origin for calculating the tile system. Default is calculating from the upper left corner.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * Some tiling system is calculating from lower right corner, this is the property to set.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    origin: TileOrigin;</span><br><span class="line">    renderContextOptions: RenderContextOptions;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Constructs a map engine instance.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;number&#125;</span> </span>width The width of map. Optional with default value 256 px.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;number&#125;</span> </span>height The height of map. Optional with default value 256 px.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;Srs&#125;</span> </span>srs The spatial reference system of this map. Optional with default value `EPSG:3857`.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;Array&lt;number&gt;&#125;</span> </span>scales The scale list that represents the zoom levels for map rendering.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">constructor</span>(width?: number, height?: number, srs?: string, scales?: Array&lt;number&gt;);</span><br><span class="line">    /**</span><br><span class="line">     * Converts this map instance into a JSON format data.</span><br><span class="line">     * @returns &#123;any&#125; A <span class="built_in">JSON</span> format data that is converted <span class="keyword">from</span> <span class="keyword">this</span> map engine.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    toJSON(): any;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * Parses the map instance <span class="keyword">from</span> a specified <span class="built_in">JSON</span> format data.</span><br><span class="line">     * The <span class="built_in">JSON</span> data must match the map engine schema, otherwise, it throws exception.</span><br><span class="line">     * @param &#123;any&#125; json The <span class="built_in">JSON</span> format data that matches the map engine schema.</span><br><span class="line">     * @returns &#123;MapEngine&#125; The map engine instance that is parsed <span class="keyword">from</span> the <span class="built_in">JSON</span> format data.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    static parseJSON(json: any): MapEngine;</span></span><br><span class="line"><span class="regexp">    static fromOptions(mapOptions: MapOptions): MapEngine;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * Gets the envelope <span class="keyword">of</span> <span class="keyword">this</span> map. It unions all the layers inside and returns a minimum envelope that includes all the visible layers.</span><br><span class="line">     * @returns &#123;Envelope&#125; The envelope <span class="keyword">of</span> <span class="keyword">this</span> map.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    envelope(): Promise&lt;Envelope&gt;;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * This is a shortcut <span class="function"><span class="keyword">function</span> <span class="title">for</span> <span class="title">simply</span> <span class="title">pushing</span> <span class="title">a</span> <span class="title">layer</span> <span class="title">into</span> <span class="title">a</span> <span class="title">group</span>. <span class="title">If</span> <span class="title">the</span> <span class="title">group</span> <span class="title">doesn</span>'<span class="title">t</span> <span class="title">exist</span>, <span class="title">it</span> <span class="title">automatically</span> <span class="title">creates</span> <span class="title">a</span> <span class="title">new</span> <span class="title">group</span> <span class="title">to</span> <span class="title">reserve</span> <span class="title">the</span> <span class="title">layer</span>.</span></span><br><span class="line"><span class="function">     *</span></span><br><span class="line"><span class="function">     * @<span class="title">param</span> </span>&#123;FeatureLayer&#125; layer The layer to push into <span class="keyword">this</span> map.</span><br><span class="line">     * @param &#123;string&#125; groupName The group name to reserve the layer. If there is no group matches the specific group name, a <span class="keyword">new</span> group will be pushed into the map. Optional <span class="keyword">with</span> <span class="keyword">default</span> value <span class="string">`Default`</span>.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    pushLayer(layer: FeatureLayer, groupName?: string): void;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * This is a shortcut <span class="function"><span class="keyword">function</span> <span class="title">for</span> <span class="title">simply</span> <span class="title">pushing</span> <span class="title">layers</span> <span class="title">into</span> <span class="title">a</span> <span class="title">group</span>. <span class="title">If</span> <span class="title">the</span> <span class="title">group</span> <span class="title">doesn</span>'<span class="title">t</span> <span class="title">exist</span>, <span class="title">it</span> <span class="title">automatically</span> <span class="title">creates</span> <span class="title">a</span> <span class="title">new</span> <span class="title">group</span> <span class="title">to</span> <span class="title">reserve</span> <span class="title">the</span> <span class="title">layer</span>.</span></span><br><span class="line"><span class="function">     *</span></span><br><span class="line"><span class="function">     * @<span class="title">param</span> </span>&#123;<span class="built_in">Array</span>&lt;FeatureLayer&gt;&#125; layers The layers to push into <span class="keyword">this</span> map.</span><br><span class="line">     * @param &#123;string&#125; groupName The group name to reserve the layer. If there is no group matches the specific group name, a <span class="keyword">new</span> group will be pushed into the map. Optional <span class="keyword">with</span> <span class="keyword">default</span> value <span class="string">`Default`</span>.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    pushLayers(layers: Array&lt;FeatureLayer&gt;, groupName?: string): void;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * Pushes multiple groups into map.</span><br><span class="line">     * @param &#123;...Array&lt;LayerGroup&gt;&#125; groups The groups to push into <span class="keyword">this</span> map.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    pushGroups(...groups: Array&lt;LayerGroup&gt;): void;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * A shortcut <span class="function"><span class="keyword">function</span> <span class="title">to</span> <span class="title">look</span> <span class="title">for</span> <span class="title">a</span> <span class="title">group</span> <span class="title">by</span> <span class="title">name</span>.</span></span><br><span class="line"><span class="function">     * @<span class="title">param</span> </span>&#123;string&#125; name The group name.</span><br><span class="line">     * @returns &#123;LayerGroup|<span class="literal">undefined</span>&#125; The layer group that matches the name. If not found, returns <span class="literal">undefined</span>.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    group(name: string): LayerGroup | undefined;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * A shortcut <span class="function"><span class="keyword">function</span> <span class="title">to</span> <span class="title">look</span> <span class="title">for</span> <span class="title">a</span> <span class="title">layer</span> <span class="title">by</span> <span class="title">name</span> <span class="title">through</span> <span class="title">all</span> <span class="title">groups</span>. <span class="title">If</span> <span class="title">the</span> <span class="title">group</span> <span class="title">name</span> <span class="title">is</span> <span class="title">defined</span>, <span class="title">it</span> <span class="title">only</span> <span class="title">looks</span> <span class="title">for</span> <span class="title">the</span> <span class="title">layer</span> <span class="title">from</span> <span class="title">the</span> <span class="title">group</span>.</span></span><br><span class="line"><span class="function">     * @<span class="title">param</span> </span>&#123;string&#125; name The layer name to look <span class="keyword">for</span>.</span><br><span class="line">     * @param &#123;string&#125; groupName The group name where the layer is looking <span class="keyword">for</span>.</span><br><span class="line">     * @returns &#123;FeatureLayer|<span class="literal">undefined</span>&#125; The layer that matches the name. If not found, returns <span class="literal">undefined</span>.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    layer(name: string, groupName?: string): FeatureLayer | undefined;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * A shortcut <span class="function"><span class="keyword">function</span> <span class="title">to</span> <span class="title">look</span> <span class="title">for</span> <span class="title">a</span> <span class="title">layer</span> <span class="title">by</span> <span class="title">id</span> <span class="title">through</span> <span class="title">all</span> <span class="title">groups</span>.</span></span><br><span class="line"><span class="function">     * @<span class="title">param</span> </span>&#123;string&#125; id The identity <span class="keyword">of</span> a layer.</span><br><span class="line">     * @returns &#123;FeatureLayer|<span class="literal">undefined</span>&#125; The layer that matches the name. If not found, returns <span class="literal">undefined</span>.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    layerByID(id: string): FeatureLayer | undefined;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * Query features through all feature layers <span class="keyword">with</span> spatial relationship - intersection.</span><br><span class="line">     * @param geom Geometry to find intersection.</span><br><span class="line">     * @param geomSrs Geometry srs to find intersection.</span><br><span class="line">     * @param zoomLevel Zoom level number. Starts <span class="keyword">from</span> <span class="number">0.</span></span><br><span class="line">     * @param pointTolerance Tolerance <span class="keyword">for</span> point geometry.</span><br><span class="line">     * @returns &#123;<span class="built_in">Array</span>&lt;&#123;<span class="attr">layerID</span>:string, <span class="attr">features</span>: Feature[]&#125;&gt;&#125; The intersected features that are categorized by layers.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    intersection(geom: Geometry, geomSrs: string, zoomLevel: number, pointTolerance?: number, includeInvisibleLayers?: boolean, layersToQuery?: string[]): Promise&lt;Array&lt;&#123;</span></span><br><span class="line"><span class="regexp">        layer: string;</span></span><br><span class="line"><span class="regexp">        features: Feature[];</span></span><br><span class="line"><span class="regexp">    &#125;&gt;&gt;;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * @deprecated This method is deprecated. Please call image(envelope?: IEnvelope) instead.</span><br><span class="line">     * @ignore</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    draw(envelope?: IEnvelope): Promise&lt;Image&gt;;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * Gets an image <span class="keyword">of</span> <span class="keyword">this</span> map instance.</span><br><span class="line">     * @param &#123;IEnvelope&#125; envelope The envelope that the viewport will be rendered. Optional <span class="keyword">with</span> the minimal envelope <span class="keyword">of</span> <span class="keyword">this</span> map.</span><br><span class="line">     * @returns &#123;Image&#125; The image that is rendered <span class="keyword">with</span> <span class="keyword">this</span> map instance.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    image(envelope?: IEnvelope): Promise&lt;Image&gt;;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * This is a shortcut <span class="function"><span class="keyword">function</span> <span class="title">to</span> <span class="title">render</span> <span class="title">this</span> <span class="title">map</span> <span class="title">instance</span> <span class="title">with</span> <span class="title">XYZ</span> <span class="title">tiling</span> <span class="title">system</span>.</span></span><br><span class="line"><span class="function">     *</span></span><br><span class="line"><span class="function">     * <span class="title">NOTE</span>: <span class="title">XYZ</span> <span class="title">rendering</span> <span class="title">requires</span> <span class="title">some</span> <span class="title">other</span> <span class="title">settings</span>, <span class="title">it</span> <span class="title">is</span> <span class="title">automatically</span> <span class="title">reflected</span> <span class="title">to</span> <span class="title">the</span> <span class="title">properties</span> <span class="title">on</span> <span class="title">this</span> <span class="title">map</span> <span class="title">instance</span>. <span class="title">e</span>.<span class="title">g</span>.</span></span><br><span class="line"><span class="function">     *</span></span><br><span class="line"><span class="function">     * <span class="title">tile</span> <span class="title">width</span> -&gt; <span class="title">map</span>.<span class="title">width</span></span></span><br><span class="line"><span class="function">     * <span class="title">tile</span> <span class="title">height</span> -&gt; <span class="title">map</span>.<span class="title">height</span></span></span><br><span class="line"><span class="function">     * <span class="title">tile</span> <span class="title">zoom</span> <span class="title">levels</span> -&gt; <span class="title">map</span>.<span class="title">scales</span></span></span><br><span class="line"><span class="function">     * <span class="title">tile</span> <span class="title">origin</span> -&gt; <span class="title">map</span>.<span class="title">origin</span></span></span><br><span class="line"><span class="function">     * ...</span></span><br><span class="line"><span class="function">     *</span></span><br><span class="line"><span class="function">     * @<span class="title">param</span> </span>&#123;number&#125; x The column number. Start <span class="keyword">from</span> <span class="number">0.</span></span><br><span class="line">     * @param &#123;number&#125; y The row number. Start <span class="keyword">from</span> <span class="number">0.</span></span><br><span class="line">     * @param &#123;number&#125; z The zoom level number. Start <span class="keyword">from</span> <span class="number">0.</span></span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    xyz(x?: number, y?: number, z?: number): Promise&lt;Image&gt;;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/guide/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #42b983;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>Ginkgoch</div>
+      <div>2019-03-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/guide/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/guide/js/book.js"></script>

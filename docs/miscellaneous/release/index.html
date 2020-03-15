@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/guide/favicon-v2.png" />
+    
+
+    <title>
+        
+          Release Note - Ginkgoch
+        
+    </title>
+
+    <meta name="keywords" content="map library, cross platform, multiple platforms, mapping software, spatial analysis">
+    <meta name="description" content="Ginkgoch provides an open source map library for crafting beautiful, cross platform mapping software for macOS, Linux and Windows from a single codebase.">
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/guide/css/book.css">
+
+    
+<script src="/guide/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/guide/">
+    <img src="/guide/favicon-v2.png">
+    <span>GINKGOCH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/guide/index">Welcome</a></li>
+<li><a href="/guide/getting-started/index">Getting Started</a><ul>
+<li><a href="/guide/getting-started/setup">Setup</a></li>
+<li><a href="/guide/getting-started/commandLine">Quick Start for CLI</a></li>
+<li><a href="/guide/getting-started/desktop">Quick Start for Desktop</a></li>
+<li><a href="/guide/getting-started/service">Quick Start for Service</a></li>
+<li><a href="/guide/getting-started/web">Quick Start for Web</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/index">Basis</a><ul>
+<li><a href="/guide/basis/geometries/index">Geometries</a><ul>
+<li><a href="/guide/basis/geometries/geometry">Geometry</a></li>
+<li><a href="/guide/basis/geometries/feature">Feature</a></li>
+<li><a href="/guide/basis/geometries/shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/styles/index">Styles</a><ul>
+<li><a href="/guide/basis/styles/style">Style</a></li>
+<li><a href="/guide/basis/styles/advanced">Advanced</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/layers/index">Layers</a><ul>
+<li><a href="/guide/basis/layers/shared">Shared</a></li>
+<li><a href="/guide/basis/layers/featureSource">FeatureSource</a></li>
+<li><a href="/guide/basis/layers/layer">Layer</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/maps/index">Map</a></li>
+</ul>
+</li>
+<li><a href="/guide/meta/index">Meta</a><ul>
+<li><a href="/guide/meta/release">Release Note</a></li>
+<li><a href="/guide/meta/showcase">Showcase</a></li>
+<li><a href="/guide/meta/faq">FAQ</a></li>
+<li><a href="/guide/meta/contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<script src="/guide/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="Release-Note"><a href="#Release-Note" class="headerlink" title="Release Note"></a>Release Note</h1><h2 id="v1-12"><a href="#v1-12" class="headerlink" title="v1.12"></a>v1.12</h2><ul>
+<li>Add <code>ViewportUtils.getInitViewport</code> function to get a proper lng, lat, zoom from envelope</li>
+<li>Allow to build geometries with number arrays for easier number input. e.g. <code>new LineString([{x:0, y:0}, {x:10, y:10}])</code> becomes <code>LineString.fromNumbers([0, 0, 10, 10])</code></li>
+<li>Implement query function on FeatureSource which allows to query features based on spatial relationship: <code>intersect</code>, <code>disjoint</code>, <code>within</code>, <code>overlap</code> and <code>touch</code></li>
+<li>Add declare file (*.d.ts) for native register for better typescript support</li>
+<li>Fix a bug of a returning type is bind to another lib’s specific version, which makes typescript upstream project compile filed</li>
+<li>Add a strategy to auto break down values by its index position. Previously, it breaks down by value, when the maximum value is far away from the second large value, the effect is not good.</li>
+<li>Allow to create new delimited file with specified features.</li>
+</ul>
+<h2 id="v1-11"><a href="#v1-11" class="headerlink" title="v1.11"></a>v1.11</h2><ul>
+<li>Add a set of APIs for building geometries with number arrays</li>
+<li>Add declare files for better compatible for Typescript</li>
+<li>Add algorithm to breakdown values by position</li>
+<li>Add options as parameter overload instead of using many parameters</li>
+<li>Add CSV file creation support</li>
+<li>Fix query disjoint features not support bug</li>
+</ul>
+<h2 id="v1-10"><a href="#v1-10" class="headerlink" title="v1.10"></a>v1.10</h2><ul>
+<li>Add getInitViewport for better compatible working with Leaflet</li>
+</ul>
+<h2 id="v1-9"><a href="#v1-9" class="headerlink" title="v1.9"></a>v1.9</h2><ul>
+<li>Support to set antialias</li>
+<li>Support to plot labels in polygon interior point - affect drawing * performance currently</li>
+<li>Support to compress coordinates for viewport</li>
+<li>Support to adjust envelope based on viewport size</li>
+<li>Support rendering in electron</li>
+<li>Support multi-source feature layer</li>
+<li>Support fill area with pattern</li>
+<li>Support draw lines with line dash</li>
+<li>Refactor FeatureLayer inheritance</li>
+<li>Improve drawing quality</li>
+<li>Improve drawing performance by avoid unnecessary steps (projection * etc.)</li>
+<li>Improve envelope() returns a concrete type instead of interface</li>
+</ul>
+<h2 id="v1-8"><a href="#v1-8" class="headerlink" title="v1.8"></a>v1.8</h2><ul>
+<li>Add CRUD shapefile support</li>
+<li>Bug fix for geom and shapefile</li>
+</ul>
+<h2 id="v1-7"><a href="#v1-7" class="headerlink" title="v1.7"></a>v1.7</h2><ul>
+<li>Add dynamicFields for link dynamic data for feature source</li>
+<li>Add createEmpty function on ShapefileFeatureSource</li>
+<li>Fix a performance bug for drawing large shapefile</li>
+</ul>
+<h2 id="v1-6"><a href="#v1-6" class="headerlink" title="v1.6"></a>v1.6</h2><ul>
+<li>Simplify native code registration for cross platform</li>
+<li>Add GeoJSO support</li>
+<li>Add CSV support</li>
+<li>Minor bugs fix</li>
+</ul>
+<h2 id="v1-5"><a href="#v1-5" class="headerlink" title="v1.5"></a>v1.5</h2><ul>
+<li>Improve API and fill documents</li>
+<li>Fix prj file is not load correctly</li>
+</ul>
+<h2 id="v1-4"><a href="#v1-4" class="headerlink" title="v1.4"></a>v1.4</h2><ul>
+<li>Add scale level on MapEngine</li>
+<li>Add XYZMap class for building tiled map service with XYZ standard</li>
+<li>Shapefile automatically load *.prj file if exists</li>
+<li>Add visible property on layer</li>
+<li>Add LayerFactory to build layers with URL</li>
+<li>Add RGBA color support</li>
+<li>Add intersection function on MapEngine</li>
+<li>Add index for shapefile for better querying performance</li>
+<li>Remove the projection WKT last invalid char</li>
+<li>Serialization bug fix</li>
+<li>Add margin on Style for better label rendering</li>
+</ul>
+<h2 id="v1-3"><a href="#v1-3" class="headerlink" title="v1.3"></a>v1.3</h2><ul>
+<li>Add JSON conversion for almost all resources</li>
+<li>Add MemoryFeatureSource to support to manage features in memory</li>
+<li>Minor bugs fix</li>
+</ul>
+<h2 id="v1-2"><a href="#v1-2" class="headerlink" title="v1.2"></a>v1.2</h2><ul>
+<li>Add LayerGroup for batch rendering multiple layers</li>
+<li>Add MapEngine for unified management of layers and rendering</li>
+<li>Minor performance improvement</li>
+</ul>
+<h2 id="v1-1"><a href="#v1-1" class="headerlink" title="v1.1"></a>v1.1</h2><ul>
+<li>Extract shared interface canvas for cross platform</li>
+<li>Extract shared interface image for cross platform</li>
+<li>Add ShapefileFeatureSource support and test</li>
+<li>Add Colors to generate random and gradient colors easily</li>
+<li>Add PropertyAggregator</li>
+<li>Add ValueStyle for rendering based on values</li>
+<li>Add ClassBreakStyle for rendering based on breakdown values</li>
+</ul>
+<h2 id="v1-0"><a href="#v1-0" class="headerlink" title="v1.0"></a>v1.0</h2><p>Generally Support following features</p>
+<ul>
+<li>Geometry</li>
+<li>Feature</li>
+<li>FeatureSource</li>
+<li>FeatureLayer</li>
+<li>Renderer</li>
+<li>Style</li>
+</ul>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/guide/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #42b983;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>Ginkgoch</div>
+      <div>2019-03-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/guide/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/guide/js/book.js"></script>

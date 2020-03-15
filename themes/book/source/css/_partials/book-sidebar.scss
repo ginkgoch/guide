@@ -1,0 +1,25 @@
+.book-sidebar {
+  position: fixed;
+  width: $sidebar-width;
+  height: 100%;
+  z-index: 500;
+
+  // background-color: #f7f8f9;
+  transition: transform 0.2s;
+  border-right: 1px solid #e7e7e7;
+
+  &.show {
+    transform: translateX(0);
+  }
+
+  @media all and (min-width: $pc-media) {
+    transform: translateX(0) !important;
+  }
+
+  @media all and (max-width: $pcs-media) {
+    transform: translateX(-100%);
+  }
+
+  @import "../_components/brand";
+  @import "../_components/menu";
+}

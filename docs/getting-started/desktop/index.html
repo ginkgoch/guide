@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/guide/favicon-v2.png" />
+    
+
+    <title>
+        
+          Quick Started for Desktop - Ginkgoch
+        
+    </title>
+
+    <meta name="keywords" content="map library, cross platform, multiple platforms, mapping software, spatial analysis">
+    <meta name="description" content="Ginkgoch provides an open source map library for crafting beautiful, cross platform mapping software for macOS, Linux and Windows from a single codebase.">
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/guide/css/book.css">
+
+    
+<script src="/guide/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/guide/">
+    <img src="/guide/favicon-v2.png">
+    <span>GINKGOCH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/guide/index">Welcome</a></li>
+<li><a href="/guide/getting-started/index">Getting Started</a><ul>
+<li><a href="/guide/getting-started/setup">Setup</a></li>
+<li><a href="/guide/getting-started/commandLine">Quick Start for CLI</a></li>
+<li><a href="/guide/getting-started/desktop">Quick Start for Desktop</a></li>
+<li><a href="/guide/getting-started/service">Quick Start for Service</a></li>
+<li><a href="/guide/getting-started/web">Quick Start for Web</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/index">Basis</a><ul>
+<li><a href="/guide/basis/geometries/index">Geometries</a><ul>
+<li><a href="/guide/basis/geometries/geometry">Geometry</a></li>
+<li><a href="/guide/basis/geometries/feature">Feature</a></li>
+<li><a href="/guide/basis/geometries/shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/styles/index">Styles</a><ul>
+<li><a href="/guide/basis/styles/style">Style</a></li>
+<li><a href="/guide/basis/styles/advanced">Advanced</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/layers/index">Layers</a><ul>
+<li><a href="/guide/basis/layers/shared">Shared</a></li>
+<li><a href="/guide/basis/layers/featureSource">FeatureSource</a></li>
+<li><a href="/guide/basis/layers/layer">Layer</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/maps/index">Map</a></li>
+</ul>
+</li>
+<li><a href="/guide/meta/index">Meta</a><ul>
+<li><a href="/guide/meta/release">Release Note</a></li>
+<li><a href="/guide/meta/showcase">Showcase</a></li>
+<li><a href="/guide/meta/faq">FAQ</a></li>
+<li><a href="/guide/meta/contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<script src="/guide/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="Quick-Started-for-Desktop"><a href="#Quick-Started-for-Desktop" class="headerlink" title="Quick Started for Desktop"></a>Quick Started for Desktop</h1><blockquote>
+<p>This quick started guide assumes the <a href="GettingStarted/Setup">setup</a> page is read and the environment is prepared.<br>The complete source code is in <a href="https://github.com/ginkgoch/node-map-quickstart/tree/master/quick-started-desktop" target="_blank" rel="noopener">github</a>.</p>
+</blockquote>
+<h2 id="User-Story"><a href="#User-Story" class="headerlink" title="User Story"></a>User Story</h2><p>For a software development, defining the user story is the first thing. Our quick started user story is this.</p>
+<blockquote>
+<p>I want to kick off a mapping software for desktop, that allows to run multiple platforms including macOS, Linux and Windows. The first thing is to build an interactive map view with my world shapefile. The interactive map means that the map is capable to pan, zoom etc.</p>
+</blockquote>
+<h2 id="Let’s-Get-Started"><a href="#Let’s-Get-Started" class="headerlink" title="Let’s Get Started"></a>Let’s Get Started</h2><p>This time, we are going to build a cross platform mapping software for desktop with web technology. <code>Electron</code> can perfectly satisfy this requirement. </p>
+<h3 id="Prepare-The-Project-Baseline"><a href="#Prepare-The-Project-Baseline" class="headerlink" title="Prepare The Project Baseline"></a>Prepare The Project Baseline</h3><p>From <code>electron</code> official guide, I think cloning the startup project is the easiest way. Follow the command below.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/electron/electron-quick-start quick-started-desktop</span><br><span class="line"><span class="built_in">cd</span> quick-started-desktop</span><br><span class="line">yarn</span><br></pre></td></tr></table></figure>
+
+<p>At this step, we clone an <code>Electron</code> startup project and installed its dependencies. We can evaluate whether our development environment is ready.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn start</span><br></pre></td></tr></table></figure>
+
+<p>If everything is fine, we will see the basic desktop surface.</p>
+<p><img src="/assets/desktop-startup.png" alt="desktop-startup"></p>
+<p>Now we will start to build our mapping software on this baseline.</p>
+<h3 id="Start-to-Build-Map"><a href="#Start-to-Build-Map" class="headerlink" title="Start to Build Map"></a>Start to Build Map</h3><h4 id="Install-Dependencies"><a href="#Install-Dependencies" class="headerlink" title="Install Dependencies"></a>Install Dependencies</h4><p>The first thing is still install relative dependencies. We need 3 modules.</p>
+<ul>
+<li><code>ginkgoch-map</code>. Our map library for node.js, which provides the mapping features.</li>
+<li><code>leaflet</code>. A great front end UI map library to build beautiful map on browser.</li>
+<li><code>ginkgoch-leaflet-extensions</code>. A Leaflet extension that connects <code>Ginkgoch Map Library</code> and <code>Leaflet</code>.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add ginkgoch-map leaflet ginkgoch-leaflet-extensions</span><br></pre></td></tr></table></figure>
+
+<h4 id="Turn-on-Node-Integration"><a href="#Turn-on-Node-Integration" class="headerlink" title="Turn on Node Integration"></a>Turn on Node Integration</h4><p>Due to the startup project doesn’t turn on the node integration, we need to manually turn it on. Open <code>main.js</code> and add <code>nodeIntegration: true</code> to the <code>webPreferences</code> node.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">webPreferences: &#123;</span><br><span class="line">    + nodeIntegration: <span class="literal">true</span>,</span><br><span class="line">    preload: path.join(__dirname, <span class="string">'preload.js'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Implement-Client-Code"><a href="#Implement-Client-Code" class="headerlink" title="Implement Client Code"></a>Implement Client Code</h4><p>Open index.html which is the place to layout your map software client interface.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"./node_modules/leaflet/dist/leaflet.css"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"> <span class="selector-tag">html</span>, <span class="selector-tag">body</span>, <span class="selector-id">#mapApp</span> &#123; <span class="attribute">margin</span>: <span class="number">0px</span>; <span class="attribute">width</span>: <span class="number">100%</span>; <span class="attribute">height</span>: <span class="number">100%</span>; &#125; </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"mapApp"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./renderer.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Add-Initial-Map-Code"><a href="#Add-Initial-Map-Code" class="headerlink" title="Add Initial Map Code"></a>Add Initial Map Code</h4><p>Open file <code>renderer.js</code> which is your main working file.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> L = <span class="built_in">require</span>(<span class="string">'leaflet'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> map = L.map(<span class="string">'mapApp'</span>).setView([<span class="number">0</span>, <span class="number">0</span>], <span class="number">2</span>);</span><br><span class="line">    L.tileLayer(<span class="string">'https://&#123;s&#125;.tile.openstreetmap.org/&#123;z&#125;/&#123;x&#125;/&#123;y&#125;.png'</span>, &#123;</span><br><span class="line">        attribution: <span class="string">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span><br><span class="line">    &#125;).addTo(map);</span><br><span class="line"></span><br><span class="line">    addWorldLayer();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addWorldLayer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// we will fill this block soon for rendering your local shapefile</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main();</span><br></pre></td></tr></table></figure>
+<p>Now let’s <code>yarn start</code> to take a look at the effect.<br><img src="/assets/desktop-init-map.png" alt="desktop-init-map"></p>
+<h4 id="Add-a-New-Layer-for-Your-Local-Shapefile"><a href="#Add-a-New-Layer-for-Your-Local-Shapefile" class="headerlink" title="Add a New Layer for Your Local Shapefile"></a>Add a New Layer for Your Local Shapefile</h4><p>Don’t close this running process. Let’s keep working on the <code>renderer.js</code> and implement the <code>addWorldLayer</code> function for rendering shapefile on your local machine.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addWorldLayer</span>(<span class="params">map</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> featureSource = <span class="keyword">new</span> G.ShapefileFeatureSource(path.resolve(__dirname, <span class="string">'../data/cntry02.shp'</span>)); <span class="comment">// replace the file path to your own location</span></span><br><span class="line">    <span class="keyword">let</span> featureLayer = <span class="keyword">new</span> G.FeatureLayer(featureSource);</span><br><span class="line">    featureLayer.styles.push(<span class="keyword">new</span> G.FillStyle(<span class="string">'rgba(255, 153, 128, 0.3)'</span>, <span class="string">'black'</span>, <span class="number">1</span>));</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> worldLayer = L.gridLayer.features();</span><br><span class="line">    worldLayer.pushLayer(featureLayer);</span><br><span class="line">    worldLayer.addTo(map);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Save file and switch to the desktop window. Press <code>cmd+r</code> to refresh, you will see the shapefile overlaps on the base map.</p>
+<p><img src="/assets/desktop-shp-overlap.png" alt="desktop-shp-overlap"></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>We can add more powerful features on the map, but we will stop here. I don’t want to make the quick started demo complex. The purpose is to quickly start your mapping software development. We will introduce more map functions later.</p>
+<p><img src="/assets/desktop-shp-overlap.gif" alt="desktop-shp-overlap"></p>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/guide/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #42b983;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>Ginkgoch</div>
+      <div>2019-03-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/guide/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/guide/js/book.js"></script>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/guide/favicon-v2.png" />
+    
+
+    <title>
+        
+          Layer Modules - Ginkgoch
+        
+    </title>
+
+    <meta name="keywords" content="map library, cross platform, multiple platforms, mapping software, spatial analysis">
+    <meta name="description" content="Ginkgoch provides an open source map library for crafting beautiful, cross platform mapping software for macOS, Linux and Windows from a single codebase.">
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/guide/css/book.css">
+
+    
+<script src="/guide/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/guide/">
+    <img src="/guide/favicon-v2.png">
+    <span>GINKGOCH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/guide/index">Welcome</a></li>
+<li><a href="/guide/getting-started/index">Getting Started</a><ul>
+<li><a href="/guide/getting-started/setup">Setup</a></li>
+<li><a href="/guide/getting-started/commandLine">Quick Start for CLI</a></li>
+<li><a href="/guide/getting-started/desktop">Quick Start for Desktop</a></li>
+<li><a href="/guide/getting-started/service">Quick Start for Service</a></li>
+<li><a href="/guide/getting-started/web">Quick Start for Web</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/index">Basis</a><ul>
+<li><a href="/guide/basis/geometries/index">Geometries</a><ul>
+<li><a href="/guide/basis/geometries/geometry">Geometry</a></li>
+<li><a href="/guide/basis/geometries/feature">Feature</a></li>
+<li><a href="/guide/basis/geometries/shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/styles/index">Styles</a><ul>
+<li><a href="/guide/basis/styles/style">Style</a></li>
+<li><a href="/guide/basis/styles/advanced">Advanced</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/layers/index">Layers</a><ul>
+<li><a href="/guide/basis/layers/shared">Shared</a></li>
+<li><a href="/guide/basis/layers/featureSource">FeatureSource</a></li>
+<li><a href="/guide/basis/layers/layer">Layer</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/maps/index">Map</a></li>
+</ul>
+</li>
+<li><a href="/guide/meta/index">Meta</a><ul>
+<li><a href="/guide/meta/release">Release Note</a></li>
+<li><a href="/guide/meta/showcase">Showcase</a></li>
+<li><a href="/guide/meta/faq">FAQ</a></li>
+<li><a href="/guide/meta/contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<script src="/guide/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="Layer-Modules"><a href="#Layer-Modules" class="headerlink" title="Layer Modules"></a>Layer Modules</h1><h2 id="Layer-Class"><a href="#Layer-Class" class="headerlink" title="Layer Class"></a>Layer Class</h2><p>Extends <code>Opener</code>. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> declare abstract <span class="class"><span class="keyword">class</span> <span class="title">Layer</span> <span class="keyword">extends</span> <span class="title">Opener</span> </span>&#123;</span><br><span class="line">    id: string;</span><br><span class="line">    name: string;</span><br><span class="line">    minimumScale: number;</span><br><span class="line">    maximumScale: number;</span><br><span class="line">    visible: boolean;</span><br><span class="line">    margin: number;</span><br><span class="line">    <span class="keyword">constructor</span>(name?: string);</span><br><span class="line">    abstract envelope(): Promise&lt;Envelope&gt;;</span><br><span class="line">    /**</span><br><span class="line">     * Enlarges the specified envelope based on the `margin` property.</span><br><span class="line">     * @param &#123;IEnvelope&#125; envelope The envelope to enlarge.</span><br><span class="line">     * @param &#123;Render&#125; render The render.</span><br><span class="line">     * @returns &#123;Envelope&#125; The enlarged envelope.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    applyMargin(envelope: IEnvelope, render: Render): Envelope;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * Gets a thumbnail image <span class="keyword">of</span> <span class="keyword">this</span> layer.</span><br><span class="line">     * @param &#123;number&#125; width The width <span class="keyword">in</span> pixel <span class="keyword">of</span> the thumbnail image.</span><br><span class="line">     * @param &#123;number&#125; height The height <span class="keyword">in</span> pixel <span class="keyword">of</span> the thumbnail image.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    thumbnail(width?: number, height?: number): Promise&lt;Image&gt;;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * Converts <span class="keyword">this</span> layer into a <span class="built_in">JSON</span> format data.</span><br><span class="line">     * @returns A <span class="built_in">JSON</span> format data <span class="keyword">of</span> <span class="keyword">this</span> layer.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    toJSON(): any;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * Draws <span class="keyword">this</span> layer <span class="keyword">with</span> styles and feature source <span class="keyword">in</span> a restricted envelope.</span><br><span class="line">     * @param &#123;Render&#125; render The renderer that holds the image source and necessary spatial infos.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    draw(render: Render): Promise&lt;void&gt;;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="FeatureLayer-Class"><a href="#FeatureLayer-Class" class="headerlink" title="FeatureLayer Class"></a>FeatureLayer Class</h2><p>Extends <code>Layer</code>. FeatureLayer responses for rendering FeatureSource with styles. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> declare <span class="class"><span class="keyword">class</span> <span class="title">FeatureLayer</span> <span class="keyword">extends</span> <span class="title">Layer</span> </span>&#123;</span><br><span class="line">    source: FeatureSource;</span><br><span class="line">    styles: <span class="built_in">Array</span>&lt;Style&gt;;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Constructs a FeatureLayer instance.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;FeatureSource&#125;</span> </span>source The feature source where the features are fetched.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;string&#125;</span> </span>name The name of this layer. Optional with default value `layer-$&#123;uuid()&#125;`.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">constructor</span>(source: FeatureSource, name?: string);</span><br><span class="line">    /**</span><br><span class="line">     * Pushes multiple styles into this layer.</span><br><span class="line">     * @param &#123;<span class="built_in">Array</span>&lt;Style&gt;&#125; styles The styles to render features.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    pushStyles(styles: Array&lt;Style&gt;): void;</span></span><br><span class="line"><span class="regexp">    /</span>**</span><br><span class="line">     * Gets the envelope <span class="keyword">of</span> <span class="keyword">this</span> layer.</span><br><span class="line">     * @returns &#123;IEnvelope&#125; The envelope <span class="keyword">of</span> <span class="keyword">this</span> layer.</span><br><span class="line">     *<span class="regexp">/</span></span><br><span class="line"><span class="regexp">    envelope(): Promise&lt;Envelope&gt;;</span></span><br><span class="line"><span class="regexp">        type: JSONKnownTypes;</span></span><br><span class="line"><span class="regexp">        id: string;</span></span><br><span class="line"><span class="regexp">        name: string;</span></span><br><span class="line"><span class="regexp">        source: any;</span></span><br><span class="line"><span class="regexp">        styles: any[];</span></span><br><span class="line"><span class="regexp">        minimumScale: number;</span></span><br><span class="line"><span class="regexp">        maximumScale: number;</span></span><br><span class="line"><span class="regexp">        visible: boolean;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="LayerFactory-Class"><a href="#LayerFactory-Class" class="headerlink" title="LayerFactory Class"></a>LayerFactory Class</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> declare <span class="class"><span class="keyword">class</span> <span class="title">LayerFactory</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Create &#123;FeatureLayer&#125; by specific url format.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param </span>sourceURL The url to create a &#123;FeatureLayer&#125;.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment">     * &#123;FeatureLayer&#125; is a uniform maintainer for &#123;FeatureSource&#125;. It describes how the features in &#123;FeatureSource&#125; are rendered.</span></span><br><span class="line"><span class="comment">     * This method is a shortcut of creating a feature layer with one line of code.</span></span><br><span class="line"><span class="comment">     * URL is formed with protocol, path and parameters.</span></span><br><span class="line"><span class="comment">     * - Protocol is defined as the abbr. of the feature source. e.g. shp = ShapefileFeatureSource, mem = MemoryFeatureSource.</span></span><br><span class="line"><span class="comment">     * - Path is used for the concrete path or name.</span></span><br><span class="line"><span class="comment">     * - Parameters are used for some optional configurations.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 1. Create a FeatureLayer with a ShapefileFeatureSource.</span></span><br><span class="line"><span class="comment">     * ```typescript</span></span><br><span class="line"><span class="comment">     * let layer = FeatureLayerFactory.create(new URL('shp://./cntry02.shp'));</span></span><br><span class="line"><span class="comment">     *</span></span><br></pre></td></tr></table></figure>
+<pre><code> * 2. Create a FeatureLayer with a ShapefileFeatureSource with rs+ flag.
+ * ```typescript
+ * let layer = FeatureLayerFactory.create(new URL(&apos;shp://./cntry02.shp?flag=rs+&apos;));
+ * ```
+ * 3. Create a FeatureLayer with a MemoryFeatureSource with name = &apos;dynamic&apos; and fields = [&apos;name&apos;, &apos;recid&apos;].
+ * ```typescript
+ * let layer = FeatureLayerFactory.create(new URL(&apos;mem://dynamic?fields=name|c,recid|n,landlocked|b&apos;));
+ * ```
+ * @returns {FeatureLayer} The feature layer with specified feature source.
+ */
+static create(sourceURL: URL): FeatureLayer;</code></pre><p>}</p>
+<pre><code>
+## LayerGroup Class
+This class represents a collection of a layers. It is used for organize the layer better in the app implementation. For instance, we usually have a set of layers that are stable and not change very often; while another set of layers are stored in memory and change very often, just like dynamic editing or highlighting features. Then we could maintain the two sets of layers in two LayerGroup; then it is easier to manage their rendering or caching.
+
+```javascript
+export declare class LayerGroup {
+    /**
+     * ID of this group. Default value is `group-${uuid()}`.
+     */
+    id: string;
+    /**
+     * Name of this group. Default value is `Unknown`.
+     */
+    name: string;
+    /**
+     * Indicates whether this group is visible or not.
+     */
+    visible: boolean;
+    /**
+     * The FeatureLayer array.
+     */
+    layers: Array&lt;FeatureLayer&gt;;
+    /**
+     * Constructs an instance of LayerGroup.
+     * @param {Array&lt;FeatureLayer&gt;} layers The layers that are about to add into this group. Pass `undefined` to initiate an empty array.
+     * @param {string} name The name of this group.
+     */
+    constructor(layers?: Array&lt;FeatureLayer&gt;, name?: string);
+    /**
+     * Gets the envelope of this group.
+     * This function unions the envelope of each layers as a minimum envelope to contains all layers.
+     * @returns {Envelope} A minimum envelope to contains all the layers inside.
+     */
+    envelope(): Promise&lt;Envelope&gt;;</code></pre>
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/guide/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #42b983;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>Ginkgoch</div>
+      <div>2019-03-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/guide/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/guide/js/book.js"></script>

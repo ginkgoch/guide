@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/guide/favicon-v2.png" />
+    
+
+    <title>
+        
+          Quick Started for Web Services - Ginkgoch
+        
+    </title>
+
+    <meta name="keywords" content="map library, cross platform, multiple platforms, mapping software, spatial analysis">
+    <meta name="description" content="Ginkgoch provides an open source map library for crafting beautiful, cross platform mapping software for macOS, Linux and Windows from a single codebase.">
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/guide/css/book.css">
+
+    
+<script src="/guide/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/guide/">
+    <img src="/guide/favicon-v2.png">
+    <span>GINKGOCH</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <ul>
+<li><a href="/guide/index">Welcome</a></li>
+<li><a href="/guide/getting-started/index">Getting Started</a><ul>
+<li><a href="/guide/getting-started/setup">Setup</a></li>
+<li><a href="/guide/getting-started/commandLine">Quick Start for CLI</a></li>
+<li><a href="/guide/getting-started/desktop">Quick Start for Desktop</a></li>
+<li><a href="/guide/getting-started/service">Quick Start for Service</a></li>
+<li><a href="/guide/getting-started/web">Quick Start for Web</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/index">Basis</a><ul>
+<li><a href="/guide/basis/geometries/index">Geometries</a><ul>
+<li><a href="/guide/basis/geometries/geometry">Geometry</a></li>
+<li><a href="/guide/basis/geometries/feature">Feature</a></li>
+<li><a href="/guide/basis/geometries/shared">Shared</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/styles/index">Styles</a><ul>
+<li><a href="/guide/basis/styles/style">Style</a></li>
+<li><a href="/guide/basis/styles/advanced">Advanced</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/layers/index">Layers</a><ul>
+<li><a href="/guide/basis/layers/shared">Shared</a></li>
+<li><a href="/guide/basis/layers/featureSource">FeatureSource</a></li>
+<li><a href="/guide/basis/layers/layer">Layer</a></li>
+</ul>
+</li>
+<li><a href="/guide/basis/maps/index">Map</a></li>
+</ul>
+</li>
+<li><a href="/guide/meta/index">Meta</a><ul>
+<li><a href="/guide/meta/release">Release Note</a></li>
+<li><a href="/guide/meta/showcase">Showcase</a></li>
+<li><a href="/guide/meta/faq">FAQ</a></li>
+<li><a href="/guide/meta/contact">Contact</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<script src="/guide/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="Quick-Started-for-Web-Services"><a href="#Quick-Started-for-Web-Services" class="headerlink" title="Quick Started for Web Services"></a>Quick Started for Web Services</h1><blockquote>
+<p>This quick started guide assumes the <a href="GettingStarted/Setup">setup</a> page is read and the environment is prepared.<br>The complete source code is in <a href="https://github.com/ginkgoch/node-map-quickstart/tree/master/quick-started-service" target="_blank" rel="noopener">github</a>.</p>
+</blockquote>
+<h2 id="User-Story"><a href="#User-Story" class="headerlink" title="User Story"></a>User Story</h2><p>For a software development, defining the user story is the first thing. Our quick started user story is this.</p>
+<blockquote>
+<p>I want to kick off a web map software for browser. The client library such as Leaflet is not capable to use my own data, while the other map server library is expensive or heavy or maybe not easy to deployment on various OS. Thus, I want to firstly build my own mapping server for my personal business. And then work with map UI library such as Leaflet to make it to represent on browser. I also want it easy to deployment.</p>
+</blockquote>
+<h2 id="Let’s-Get-Started"><a href="#Let’s-Get-Started" class="headerlink" title="Let’s Get Started"></a>Let’s Get Started</h2><p>There are many easy to use web framework to build a web service. To make this quick start guide simple, we will use <code>Ginkgoch Map Library</code> and <code>Plain JavaScript</code> to build this first map service.</p>
+<h3 id="Prepare-The-Project-Baseline"><a href="#Prepare-The-Project-Baseline" class="headerlink" title="Prepare The Project Baseline"></a>Prepare The Project Baseline</h3><p>Make sure the <a href="GettingStarted/Setup">Setup for Service Specific</a> is read and installed the necessary dependencies.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir quick-started-service</span><br><span class="line"><span class="built_in">cd</span> quick-started-service</span><br><span class="line">yarn init -y</span><br><span class="line">yarn add ginkgoch-map canvas</span><br><span class="line">touch index.js</span><br><span class="line">code .</span><br></pre></td></tr></table></figure>
+
+<p>After those commands are executed, we already setup our project base line: created a project folder, init the dependency management config file, installed the necessary modules, created a service entry point file and open visual studio code as our later IDE. Now we are ready to code.</p>
+<h3 id="Start-to-Build-Map-Service"><a href="#Start-to-Build-Map-Service" class="headerlink" title="Start to Build Map Service"></a>Start to Build Map Service</h3><h4 id="Create-a-Simple-HTTP-Server"><a href="#Create-a-Simple-HTTP-Server" class="headerlink" title="Create a Simple HTTP Server"></a>Create a Simple HTTP Server</h4><p>Fill the following code into <code>index.js</code> and that’s done.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> port = <span class="number">5500</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">serve</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// here is the mapping code area</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    server.listen(port, () =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Server is served at http://localhost:<span class="subst">$&#123;port&#125;</span>`</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">serve();</span><br></pre></td></tr></table></figure>
+
+<p>Execute <code>node index.js</code>, a HTTP server will be hosted at <code>http://localhost:5500</code>.</p>
+<h4 id="Add-Tiled-Map-Route"><a href="#Add-Tiled-Map-Route" class="headerlink" title="Add Tiled Map Route"></a>Add Tiled Map Route</h4><p>Refer to this <a href="https://en.wikipedia.org/wiki/Tiled_web_map" target="_blank" rel="noopener">wiki page</a> for more detail of <code>tiled map server</code>. We are going to implement one of its standard <code>XYZ</code> tile to implement it. We assume our XYZ tile route URL is <code>/maps/default/{z}/{x}/{y}</code>. I think this route could be RESTful and easy to extend the resources later. Let’s move on.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> G = <span class="built_in">require</span>(<span class="string">'ginkgoch-map'</span>).default.all;</span><br><span class="line"></span><br><span class="line"><span class="comment">// register native graphics and it is the most important one</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'ginkgoch-map/native/node'</span>).init();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> port = <span class="number">5500</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">serve</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> server = http.createServer(<span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">        <span class="comment">// parse the route: /maps/default/&#123;z&#125;/&#123;x&#125;/&#123;y&#125;</span></span><br><span class="line">        <span class="keyword">if</span> (req.url.match(<span class="regexp">/maps\/default(\/\d+)&#123;3&#125;/</span>)) &#123;</span><br><span class="line">            <span class="comment">// parse x, y, z from url</span></span><br><span class="line">            <span class="keyword">let</span> segments = req.url.split(<span class="string">'/'</span>);</span><br><span class="line">            <span class="keyword">let</span> [z, x, y] = segments.slice(segments.length - <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// draw tile image</span></span><br><span class="line">            <span class="keyword">let</span> tileImage = <span class="keyword">await</span> getTileImage(x, y, z);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// write respond</span></span><br><span class="line">            res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'image/png'</span>&#125;);</span><br><span class="line">            res.end(tileImage);</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.debug(<span class="string">`URL not handled: <span class="subst">$&#123;req.url&#125;</span>`</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    server.listen(port, () =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Server is served at http://localhost:<span class="subst">$&#123;port&#125;</span>`</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">serve();</span><br></pre></td></tr></table></figure>
+
+<p>Here pastes the <code>getTileImage</code> function separately for extending the mapping functions later.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getTileImage</span>(<span class="params">x, y, z</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> sourcePath = path.resolve(__dirname, <span class="string">`../data/cntry02.shp`</span>);</span><br><span class="line">    <span class="keyword">let</span> source = <span class="keyword">new</span> G.ShapefileFeatureSource(sourcePath);</span><br><span class="line">    <span class="keyword">let</span> layer = <span class="keyword">new</span> G.FeatureLayer(source);</span><br><span class="line">    layer.styles.push(<span class="keyword">new</span> G.FillStyle(<span class="string">'#f0f0f0'</span>, <span class="string">'#636363'</span>, <span class="number">1</span>));</span><br><span class="line">    <span class="keyword">let</span> mapEngine = <span class="keyword">new</span> G.MapEngine(<span class="number">256</span>, <span class="number">256</span>);</span><br><span class="line">    mapEngine.pushLayer(layer);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> mapImage = <span class="keyword">await</span> mapEngine.xyz(x, y, z);</span><br><span class="line">    <span class="keyword">return</span> mapImage.toBuffer();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Let’s restart our server by <code>node index.js</code> again. Visit <code>http://localhost:5500/maps/default/0/0/0</code> will response a world wide image with countries.</p>
+<p><img src="/assets/service-world-tile1.png" alt="service-world-tile1"></p>
+<p>Try another url for one level down <code>http://localhost:5500/maps/default/1/1/0</code>.</p>
+<p><img src="/assets/service-world-tile2.png" alt="service-world-tile2"></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>In this page, we create a tiled map service with <code>Ginkgoch Map Library</code> and <code>Plain JavaScript</code>. It seems pretty much code, but it is from 0 to 1 to walk you through the entire process. Later, we will introduce advanced way to make the project modern and fancy. Until next time.</p>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/guide/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="G"
+          style="background-color: #42b983;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>Ginkgoch</div>
+      <div>2019-03-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/guide/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/guide/js/book.js"></script>
