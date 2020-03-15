@@ -11,4 +11,4 @@ It is welcome to contact me with following channels. I will try my best to feedb
 * Submit issues or requests in [github project](https://github.com/ginkgoch/node-map/projects/1?add_cards_query=is%3Aopen).
 * This is a personal project. If you like it, please [buy me a coffee](https://paypal.me/ginkgoch101) ☕︎ ♥︎
 
-![buy-me-a-coffee](/assets/meta-buy-me-a-coffee.png) 
+![buy-me-a-coffee](/guide/assets/meta-buy-me-a-coffee.png) 

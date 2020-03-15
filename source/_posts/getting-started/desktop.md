@@ -29,7 +29,7 @@ yarn start
 
 If everything is fine, we will see the basic desktop surface.
 
-![desktop-startup](/assets/desktop-startup.png)
+![desktop-startup](/guide/assets/desktop-startup.png)
 
 Now we will start to build our mapping software on this baseline.
 
@@ -93,7 +93,7 @@ function addWorldLayer() {
 main();
 ```
 Now let's `yarn start` to take a look at the effect.
-![desktop-init-map](/assets/desktop-init-map.png)
+![desktop-init-map](/guide/assets/desktop-init-map.png)
 
 #### Add a New Layer for Your Local Shapefile
 Don't close this running process. Let's keep working on the `renderer.js` and implement the `addWorldLayer` function for rendering shapefile on your local machine.
@@ -112,12 +112,12 @@ function addWorldLayer(map) {
 
 Save file and switch to the desktop window. Press `cmd+r` to refresh, you will see the shapefile overlaps on the base map.
 
-![desktop-shp-overlap](/assets/desktop-shp-overlap.png)
+![desktop-shp-overlap](/guide/assets/desktop-shp-overlap.png)
 
 ## Summary
 We can add more powerful features on the map, but we will stop here. I don't want to make the quick started demo complex. The purpose is to quickly start your mapping software development. We will introduce more map functions later.
 
-![desktop-shp-overlap](/assets/desktop-shp-overlap.gif)
+![desktop-shp-overlap](/guide/assets/desktop-shp-overlap.gif)
 
 
 

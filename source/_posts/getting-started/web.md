@@ -63,7 +63,7 @@ NOTE: this is also from `Leaflet` quick start tutorial with the map service URL 
 
 Now we can launch our server by `node index.js` and drag the `client/index.html` into browser. An initial map view will be represented in front of you.
 
-![web-init-map](/assets/web-init-map.gif)
+![web-init-map](/guide/assets/web-init-map.gif)
 
 ### Refactor the Code for More APIs
 Now, we are going to add more APIs (e.g. `identify`) on this HTTP server. Let's refactor the code as following.
@@ -305,7 +305,7 @@ map.on('click', evt => {
 
 Open browser, refresh the `index.html` page.
 
-![web-map-identify](/assets/web-map-identify.gif)
+![web-map-identify](/guide/assets/web-map-identify.gif)
 
 
 

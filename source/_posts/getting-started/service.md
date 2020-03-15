@@ -107,11 +107,11 @@ async function getTileImage(x, y, z) {
 
 Let's restart our server by `node index.js` again. Visit `http://localhost:5500/maps/default/0/0/0` will response a world wide image with countries.
 
-![service-world-tile1](/assets/service-world-tile1.png)
+![service-world-tile1](/guide/assets/service-world-tile1.png)
 
 Try another url for one level down `http://localhost:5500/maps/default/1/1/0`.
 
-![service-world-tile2](/assets/service-world-tile2.png)
+![service-world-tile2](/guide/assets/service-world-tile2.png)
 
 ## Summary
 In this page, we create a tiled map service with `Ginkgoch Map Library` and `Plain JavaScript`. It seems pretty much code, but it is from 0 to 1 to walk you through the entire process. Later, we will introduce advanced way to make the project modern and fancy. Until next time.
