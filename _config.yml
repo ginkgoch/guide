@@ -15,6 +15,7 @@ timezone: ''
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://ginkgoch.com/guide
 root: /guide/
+home: https://ginkgoch.com
 permalink: :title/
 permalink_defaults:
 pretty_urls:
