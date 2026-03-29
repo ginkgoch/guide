@@ -6,7 +6,7 @@
     "build": "rm -rf public && hexo generate",
     "docs": "rm -rf docs && mv -f public docs",
     "clean": "hexo clean",
-    "deploy": "hexo deploy",
+    "deploy": "aws s3 cp public/ s3://docs.ginkgoch.com/ --recursive --profile ginkgoch",
     "server": "hexo server"
   },
   "hexo": {
